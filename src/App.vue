@@ -1,19 +1,26 @@
-<template id="app">
-  <b-container fluid="sm">
-    Complicado
+<template >
+  
+  <b-container fluid id="app">
+    
+    <router-view></router-view>
+
   </b-container>
+  
+
 </template>
 
 <script>
-  export default{
+
+  export default {
 
   }
 </script>
 
-<style>
-  #app{
+<style scoped lang="scss">
+  
+  #app {
     height: 100vh;
-    width:  100vw;
-    background-color: red;
+    margin: 0;
+    padding: 0;
   }
 </style>

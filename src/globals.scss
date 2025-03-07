@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+html{
+    height: 100vh;
+}
+
+:root{
+    --primary-dark: #001a3d;
+    --primary: #0844c1;
+    --primary-light: #00bedd;
+    --accent: #a60b2f;
+    --background: #f1f4f9;
+    --secondary-dark: #23282f;
+    --secondary: #63758d;
+    --secondary-light: #cbd4e1;
+}
+
+// Buttons
+.btn-primary-dark{
+    background-color: var(--primary-dark) !important;
+    color: white !important;
+    border: none !important;
+
+    &:hover{
+        background-color: var(--primary) !important;
+    }
+}
+
+.btn-primary-light{
+    background-color: var(--primary-light) !important;
+    color: white !important;
+    border: none !important;
+
+    &:hover{
+        background-color: var(--primary) !important;
+    }
+}
+
+// Inputs
+.input:focus::placeholder {
+    color: transparent;
+}
+
+// Links
+.link {
+    text-decoration: none;
+    color: var(--primary-dark);
+
+    &:hover{
+        text-decoration: underline;
+        color: var(--primary)
+    }
+}
