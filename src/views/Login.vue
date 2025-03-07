@@ -12,7 +12,7 @@
             <b-col cols="12" md="6" lg="4" class="h-100 d-flex justify-content-center align-items-center">
                 
                 <!-- Formulário de login com evento de submit -->
-                <b-form class="formLogin" @submit.prevent="handleLogin">
+                <b-form class="formLogin">
                     
                     <!-- Logo da empresa -->
                     <img src="../assets/login/logoSispar.png" alt="Logo da Wilson's Sons">
@@ -59,12 +59,12 @@
                     <b-row no-gutters class="w-100 d-flex justify-content-between gap-1">
                         
                         <!-- Botão de login -->
-                        <b-col cols="5" xl="5" class="p-0">
-                            <b-button class="w-100 btn-primary-dark" type="submit">Entrar</b-button>
+                        <b-col cols="5" class="p-0">
+                            <b-button class="w-100 btn-primary-dark" @click.prevent="handleLogin()">Entrar</b-button>
                         </b-col>
                         
                         <!-- Botão para criar conta -->
-                        <b-col cols="5" xl="5" class="p-0">
+                        <b-col cols="5" class="p-0">
                             <b-button class="w-100 btn-primary-light" tag="router-link" to="/novasenha">Criar conta</b-button>
                         </b-col>
                     </b-row>
@@ -84,16 +84,26 @@ export default {
         return {
             user: { email: '', senha: '' }, // Dados do usuário
             login: { email: 'marcos@gmail.com', senha: '123' }, // Dados de login para validação
-            erro: 'Senha ou email inválidos', // Mensagem de erro
+            erro: '', // Mensagem de erro
             showError: false // Controle de exibição do erro
         }
     },
     methods: {
         handleLogin() {
             // Verifica se o email e senha correspondem aos dados de login
-            if (this.login.email === this.user.email && this.login.senha === this.user.senha) {
-                this.$router.push('/home'); // Redireciona para a página inicial
+            if (this.login.email === this.user.email) {
+
+                if (this.login.senha === this.user.senha){
+                    this.$router.push('/home'); // Redireciona para a página inicial
+                } else {
+                    this.erro = 'Senha incorreta'; // Define mensagem de erro
+                    this.showError = true; // Exibe mensagem de erro
+                    setTimeout(() => {
+                        this.showError = false; // Oculta mensagem de erro após 3 segundos
+                    }, 3000)
+                }
             } else {
+                this.erro = 'Email não cadastrado'; // Define mensagem de erro
                 this.showError = true; // Exibe mensagem de erro
                 setTimeout(() => {
                     this.showError = false; // Oculta mensagem de erro após 3 segundos
