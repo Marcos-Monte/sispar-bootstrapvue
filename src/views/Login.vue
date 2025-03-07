@@ -90,24 +90,36 @@ export default {
     },
     methods: {
         handleLogin() {
-            // Verifica se o email e senha correspondem aos dados de login
-            if (this.login.email === this.user.email) {
+            try {
+                if(!this.user.email || !this.user.senha) {
+                    this.erro = 'Preencha todos os campos'; // Define mensagem de erro
+                    this.showError = true; // Exibe mensagem de erro
+                    setTimeout(() => {
+                        this.showError = false; // Oculta mensagem de erro após 3 segundos
+                    }, 3000)
+                    return;
+                }
+                // Verifica se o email e senha correspondem aos dados de login
+                if (this.login.email === this.user.email) {
 
-                if (this.login.senha === this.user.senha){
-                    this.$router.push('/home'); // Redireciona para a página inicial
+                    if (this.login.senha === this.user.senha){
+                        this.$router.push('/home'); // Redireciona para a página inicial
+                    } else {
+                        this.erro = 'Senha incorreta'; // Define mensagem de erro
+                        this.showError = true; // Exibe mensagem de erro
+                        setTimeout(() => {
+                            this.showError = false; // Oculta mensagem de erro após 3 segundos
+                        }, 3000)
+                    }
                 } else {
-                    this.erro = 'Senha incorreta'; // Define mensagem de erro
+                    this.erro = 'Email não cadastrado'; // Define mensagem de erro
                     this.showError = true; // Exibe mensagem de erro
                     setTimeout(() => {
                         this.showError = false; // Oculta mensagem de erro após 3 segundos
                     }, 3000)
                 }
-            } else {
-                this.erro = 'Email não cadastrado'; // Define mensagem de erro
-                this.showError = true; // Exibe mensagem de erro
-                setTimeout(() => {
-                    this.showError = false; // Oculta mensagem de erro após 3 segundos
-                }, 3000)
+            } catch (error) {
+                console.error('Erro: ',error); // Exibe erro no console
             }
         }
     }
