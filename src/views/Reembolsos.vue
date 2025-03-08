@@ -2,13 +2,7 @@
 
     <b-container fluid class="vh-100 overflow-hidden p-0" >
 
-        <NavBar />
-
-        <b-container>
-
             Reembolsos
-
-        </b-container>
 
     </b-container>
 
@@ -21,7 +15,6 @@ import NavBar from '@/components/NavBar.vue';
     export default {
 
         components: {NavBar},
-
 
     }
 

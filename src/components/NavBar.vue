@@ -21,7 +21,7 @@
 
                 <b-nav-item >
 
-                    <b-button class="btn-icon-primary" tag="router-link" to="/">
+                    <b-button class="btn-icon-primary" tag="router-link" to="/reembolsos">
                         <img src="../assets/navbar/iconHome.png" alt="">
                     </b-button>
 
@@ -30,7 +30,7 @@
 
                 <b-nav-item href="#">
 
-                    <b-button class="btn-icon-primary"  tag="router-link" to="/reembolso">
+                    <b-button class="btn-icon-primary"  tag="router-link" to="/solicitacoes">
                         <img src="../assets/navbar/iconReembolso.png" alt="">
                     </b-button>
 

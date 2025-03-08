@@ -1,14 +1,8 @@
 <template>
 
-    <b-container no-gutters fluid class="vh-100 overflow-hidden">
+    <b-container fluid class="vh-100 overflow-hidden p-0" >
 
-        <NavBar />
-
-        <b-container fluid>
-
-            <router-view></router-view>
-
-        </b-container>
+            Solicitacoes
 
     </b-container>
 
@@ -21,7 +15,6 @@ import NavBar from '@/components/NavBar.vue';
     export default {
 
         components: {NavBar},
-
 
     }
 
