@@ -1,6 +1,6 @@
 <template>
   <!-- Container principal que ocupa toda a largura da tela -->
-  <b-container fluid id="app">
+  <b-container no-gutters fluid id="app">
     
     <!-- Componente que renderiza as rotas -->
     <router-view></router-view>
@@ -19,6 +19,7 @@ export default {
   #app {
     height: 100vh; /* Ocupa toda a altura da tela */
     margin: 0; /* Remove margens */
-    padding: 0; /* Remove preenchimento */
+    padding: 0 !important; /* Remove preenchimento */
+    // background-color: blue;
   }
 </style>

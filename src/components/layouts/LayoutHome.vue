@@ -1,12 +1,12 @@
 <template>
 
-    <b-container fluid class="vh-100 overflow-hidden p-0" >
+    <b-container no-gutters fluid class="vh-100 overflow-hidden">
 
         <NavBar />
 
-        <b-container>
+        <b-container fluid>
 
-            Reembolsos
+            router-view
 
         </b-container>
 

@@ -1,9 +1,8 @@
 <template>
 
-<div>
-        Home
+    <div>
+        Cadastro
     </div>
-
 
 </template>
 

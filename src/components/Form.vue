@@ -33,7 +33,7 @@
         ></b-form-input>
         
         <!-- Link para recuperação de senha -->
-        <router-link class="link" to="/home">Esqueci minha senha</router-link>
+        <router-link class="link" to="/novasenha">Esqueci minha senha</router-link>
         
         <!-- Alerta de erro de login -->
         <b-alert 
@@ -54,7 +54,7 @@
             
             <!-- Botão para criar conta -->
             <b-col cols="5" class="p-0">
-                <b-button class="w-100 btn-primary-light" tag="router-link" to="/novasenha">Criar conta</b-button>
+                <b-button class="w-100 btn-primary-light" tag="router-link" to="/cadastro">Criar conta</b-button>
             </b-col>
             
         </b-row>
@@ -90,7 +90,7 @@
                     if (this.login.email === this.user.email) {
 
                         if (this.login.senha === this.user.senha){
-                            this.$router.push('/home'); // Redireciona para a página inicial
+                            this.$router.push('/reembolsos'); // Redireciona para a página inicial
                         } else {
                             this.erro = 'Senha incorreta'; // Define mensagem de erro
                             this.showError = true; // Exibe mensagem de erro
