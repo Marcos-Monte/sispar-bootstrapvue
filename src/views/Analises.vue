@@ -1,10 +1,10 @@
 <template>
 
-    <b-container fluid class="vh-100 overflow-hidden p-0" >
+    <b-row class="justify-content-center align-items-center vh-100" >
 
-            Analises
+        Analises
 
-    </b-container>
+    </b-row>
 
 </template>
 

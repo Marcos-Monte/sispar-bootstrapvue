@@ -1,10 +1,10 @@
 <template>
 
-    <b-container fluid class="vh-100 overflow-hidden p-0" >
+    <b-row class="justify-content-center align-items-center vh-100" >
 
-            Reembolsos
+        Reembolsos
 
-    </b-container>
+    </b-row>
 
 </template>
 
@@ -21,6 +21,5 @@ import NavBar from '@/components/NavBar.vue';
 </script>
 
 <style scoped lang="scss">
-
 
 </style>
