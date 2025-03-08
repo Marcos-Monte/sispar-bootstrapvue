@@ -2,7 +2,7 @@
 
     <b-row class="justify-content-center align-items-center vh-100" >
 
-        Reembolsos
+        Dashboard
 
     </b-row>
 

@@ -6,10 +6,10 @@ import Home from '../components/layouts/LayoutHome.vue'
 // Importando as views
 import Analises from '../views/Analises.vue'
 import Cadastro from '../views/Cadastro.vue'
+import Dashboard from '../views/Dashboard.vue'
 import Historico from '../views/Historico.vue'
 import Login from '../views/Login.vue'
 import NovaSenha from '../views/NovaSenha.vue'
-import Reembolsos from '../views/Reembolsos.vue'
 import Solicitacoes from '../views/Solicitacoes.vue'
 
 
@@ -31,7 +31,7 @@ const routes = [
     // Cria rotas filhas
     children: [
       
-      { path: 'reembolsos', name: 'reembolsos', component: Reembolsos},
+      { path: 'dashboard', name: 'dashboard', component: Dashboard},
       { path: 'analises', name: 'analises', component: Analises},
       { path: 'historico', name: 'historico', component: Historico},
       { path: 'solicitacoes', name: 'solicitacoes',component: Solicitacoes}

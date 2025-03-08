@@ -9,21 +9,6 @@
             <img src="../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
         </b-navbar-toggle>
 
-        <!-- Colapso do navbar para o usuário -->
-        <b-collapse id="navbar-toggle-collapse-user" is-nav>
-            <!-- Navbar nav com classe condicional baseada na largura da janela -->
-            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'open' : ''">
-                <!-- Item de navegação com nome do usuário -->
-                <b-nav-item >
-                    <p>Marcos Monte</p>
-                </b-nav-item>
-                <!-- Item de navegação com cargo do usuário -->
-                <b-nav-item >
-                    <p>Desenvolvedor Front-End</p>
-                </b-nav-item>
-            </b-navbar-nav>
-        </b-collapse>
-
         <!-- Botão de toggle para o colapso principal -->
         <b-navbar-toggle target="navbar-toggle-collapse" class="btn-icon-primary">
             <!-- Template para ícone de toggle -->
@@ -36,7 +21,7 @@
         <!-- Colapso do navbar principal -->
         <b-collapse id="navbar-toggle-collapse" is-nav>
             <!-- Navbar nav com classe condicional baseada na largura da janela -->
-            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'open' : ''">
+            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'openItems' : ''">
                 <!-- Item de navegação para a página de início -->
                 <b-nav-item >
                     <b-button class="btn-icon-primary" tag="router-link" to="/reembolsos">
@@ -64,6 +49,28 @@
                         <img src="../assets/navbar/iconHistorico.png" alt="">
                     </b-button>
                     <p>Historico</p>
+                </b-nav-item>
+            </b-navbar-nav>
+        </b-collapse>
+
+        <!-- Colapso do navbar para o usuário -->
+        <b-collapse id="navbar-toggle-collapse-user" is-nav>
+            <!-- Navbar nav com classe condicional baseada na largura da janela -->
+            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'openUser' : ''">
+                <!-- Item de navegação com nome do usuário -->
+                <b-nav-item >
+                    <p>Marcos Monte</p>
+                </b-nav-item>
+                <!-- Item de navegação com cargo do usuário -->
+                <b-nav-item >
+                    <p>Desenvolvedor Front-End</p>
+                </b-nav-item>
+                <!-- Item de navegação para a página de login -->
+                <b-nav-item>
+                    <b-button class="btn-icon-secondary"  tag="router-link" to="/">
+                        <img src="../assets/navbar/iconExit.png" alt="">
+                    </b-button>
+                    <p>Exit</p>
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
@@ -118,10 +125,20 @@
     }
 
     /* Estilos para a classe 'open' */
-    .open {
-        /* background-color: red; */
-        /* max-width: 150px !important; */
-        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+    .openUser {
+        position: absolute;
+        top: 66px;
+        left: 0;
+        
+        // box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+    /* Estilos para a classe 'open' */
+    .openItems {
+        position: absolute;
+        top: 66px;
+        right: 0;
+        
+        //box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
     }
 
     /* Estilos para o toggle do dropdown */

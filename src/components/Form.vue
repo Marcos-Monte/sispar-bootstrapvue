@@ -90,7 +90,7 @@
                     if (this.login.email === this.user.email) {
 
                         if (this.login.senha === this.user.senha){
-                            this.$router.push('/reembolsos'); // Redireciona para a página inicial
+                            this.$router.push('/dashboard'); // Redireciona para a página inicial
                         } else {
                             this.erro = 'Senha incorreta'; // Define mensagem de erro
                             this.showError = true; // Exibe mensagem de erro

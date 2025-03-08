@@ -57,6 +57,21 @@ html{
     }
 }
 
+.btn-icon-secondary{
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary) !important;
+    color: white !important;
+    border: none !important;
+
+    &:hover{
+        background-color: var(--secondary-dark) !important;
+    }
+}
+
 
 // Inputs
 .input:focus::placeholder {
