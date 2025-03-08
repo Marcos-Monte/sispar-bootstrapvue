@@ -2,9 +2,26 @@
 
     <b-navbar toggleable>
 
-        <b-navbar-brand href="#">
-            <img src="../assets/navbar/logoSispar.png" alt="Logo da Wilson's Sons">
-        </b-navbar-brand>
+        <b-navbar-toggle target="navbar-toggle-collapse-user" >
+
+            <img src="../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
+
+        </b-navbar-toggle>
+
+        <b-collapse id="navbar-toggle-collapse-user" is-nav>
+
+            <b-navbar-nav class="ml-auto p-2 open" >
+
+                <b-nav-item >
+                    <p>Marcos Monte</p>
+                </b-nav-item>
+                <b-nav-item >
+                    <p>Desenvolvedor Front-End</p>
+                </b-nav-item>
+            
+            </b-navbar-nav>
+
+        </b-collapse>
 
         <b-navbar-toggle target="navbar-toggle-collapse" class="btn-icon-primary">
 
@@ -57,10 +74,6 @@
                 
             </b-navbar-nav>
 
-            <b-navbar-nav>
-                Aqui
-            </b-navbar-nav>
-
         </b-collapse>
 
     </b-navbar>
@@ -80,9 +93,9 @@
 <style scoped lan="scss">
 
     .nav-link {
-        width: 100%;
+        width: 100% !important;
         display: flex;
-        justify-content: flex-start;
+        justify-content: flex-end;
         align-items: center;
         gap: 1rem;
         /* background-color: red; */
@@ -94,8 +107,18 @@
 
     .open {
         /* background-color: red; */
-        width: 100% !important;
+        /* max-width: 150px !important; */
         box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
     }
+
+    .dropdown-toggle {
+        cursor: pointer;
+    }
+
+    #navbar-toggle-collapse-user {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;}
 
 </style>

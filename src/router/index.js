@@ -1,8 +1,9 @@
 // Importa o Vue e o VueRouter
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// Importa os componentes que serão usados como páginas
+// Importando Layouts
 import Home from '../components/layouts/LayoutHome.vue'
+// Importando as views
 import Analises from '../views/Analises.vue'
 import Cadastro from '../views/Cadastro.vue'
 import Historico from '../views/Historico.vue'
