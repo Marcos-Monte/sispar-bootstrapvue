@@ -31,7 +31,7 @@ const routes = [
     // Cria rotas filhas
     children: [
       
-      { path: 'dashboard', name: 'dashboard', component: Dashboard},
+      { path: 'home', name: 'home', component: Dashboard},
       { path: 'analises', name: 'analises', component: Analises},
       { path: 'historico', name: 'historico', component: Historico},
       { path: 'solicitacoes', name: 'solicitacoes',component: Solicitacoes}
