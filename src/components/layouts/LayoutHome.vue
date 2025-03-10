@@ -1,6 +1,6 @@
 <template>
 
-    <b-container no-gutters fluid class="vh-100 overflow-hidden position-relative">
+    <b-container no-gutters fluid class="vh-100 overflow-hidden position-relative p-0">
 
         <NavBar />
 

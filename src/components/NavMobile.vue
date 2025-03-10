@@ -1,7 +1,7 @@
 <template>
 
     <!-- Navbar principal que é toggleable em larguras grandes (lg) -->
-    <b-navbar toggleable>
+    <b-navbar toggleable sticly>
 
         <!-- Botão de toggle para o colapso do usuário -->
         <b-navbar-toggle target="navbar-toggle-collapse-user" >
