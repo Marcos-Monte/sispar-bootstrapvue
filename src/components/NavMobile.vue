@@ -1,7 +1,7 @@
 <template>
 
     <!-- Navbar principal que é toggleable em larguras grandes (lg) -->
-    <b-navbar toggleable sticly>
+    <b-navbar toggleable sticky>
 
         <!-- Botão de toggle para o colapso do usuário -->
         <b-navbar-toggle target="navbar-toggle-collapse-user" >
@@ -21,7 +21,7 @@
         <!-- Colapso do navbar principal -->
         <b-collapse id="navbar-toggle-collapse" is-nav>
             <!-- Navbar nav com classe condicional baseada na largura da janela -->
-            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'openItems' : ''">
+            <b-navbar-nav class="ml-auto p-2">
                 <!-- Item de navegação para a página de início -->
                 <b-nav-item >
                     <p>Inicio</p>
@@ -56,7 +56,7 @@
         <!-- Colapso do navbar para o usuário -->
         <b-collapse id="navbar-toggle-collapse-user" is-nav>
             <!-- Navbar nav com classe condicional baseada na largura da janela -->
-            <b-navbar-nav class="ml-auto p-2" :class="windowWidth < 992 ? 'openUser' : ''">
+            <b-navbar-nav class="ml-auto p-2">
                 <!-- Item de navegação com nome do usuário -->
                 <b-nav-item >
                     <p>Marcos Monte</p>
@@ -82,27 +82,6 @@
 <script>
 
     export default {
-        // Dados do componente
-        data(){
-            return {
-                // Armazena a largura da janela
-                windowWidth: window.innerWidth,
-            }
-        },
-
-        // Métodos do componente
-        methods: {
-            // Método para atualizar a largura da janela
-            handleResize(){
-                return this.windowWidth = window.innerWidth;
-            }
-        }, 
-
-        // Hook do ciclo de vida do Vue que é chamado quando o componente é montado
-        mounted(){
-            // Adiciona um listener para o evento de redimensionamento da janela
-            window.addEventListener('resize', this.handleResize);
-        },
 
     }
 
