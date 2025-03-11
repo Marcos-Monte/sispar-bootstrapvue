@@ -87,6 +87,7 @@
 
         transition: opacity 0.8s ease-in-out;
         transition: width 0.2s ease-in-out;
+        background-color: #fff;
     }
 
     .visible {
