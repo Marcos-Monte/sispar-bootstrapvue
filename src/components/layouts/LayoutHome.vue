@@ -4,11 +4,11 @@
 
         <NavBar />
 
-        <b-container fluid>
-
+        <!-- <b-container fluid class="contentBox d-flex flex-column justify-content-center align-items-center"> -->
+            
             <router-view></router-view>
 
-        </b-container>
+        <!-- </b-container> -->
 
     </b-container>
 
@@ -29,5 +29,9 @@ import NavBar from '@/components/NavBar.vue';
 
 <style scoped lang="scss">
 
+    .contentBox {
+        width: 100%;
+        height: 100%;
+    }
 
 </style>

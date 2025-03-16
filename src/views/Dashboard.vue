@@ -1,36 +1,53 @@
 <template>
 
-    <!-- Linha que centraliza o conteúdo vertical e horizontalmente -->
-    <b-row class="justify-content-center align-items-center vh-100 text-center" >
+    <b-container fluid class="contentBox d-flex justify-content-center align-items-center p-0">
 
-        <!-- Coluna que contém o título e a descrição do sistema -->
-        <b-col cols="12">
-            <h2>Sistema de Reembolsos</h2>
-            <p>Solicite novos pedidos de reembolso, visualize solicitações em análise e todo o histórico.</p>
-        </b-col>
+        <b-row no-gutters>
+            <b-col cols="12" class="pathBox d-flex justify-content-start align-items-center gap-3">
+                <img src="../assets/path/iconHomePath.png" alt="Icone de uma casinha">
+                <img src="../assets/path/iconArrowPath.png" alt="Icone de uma seta">
+                <p class="m-0">Reembolsos</p>
+            </b-col>
+        </b-row>
 
-        <!-- Colunas que contêm os cartões de reembolso -->
-        <b-col cols="8" md="3" lg="2"
-            class="cardCol"
-            v-for="(card, index) in cards"
-        >
+        <b-row  no-gutters >
+            <b-col cols="12">
+                
+                <b-row no-gutters fluid>
+                    <b-col cols="12">
+                        <h2>Sistema de Reembolsos</h2>
+                        <p>Solicite novos pedidos de reembolso, visualize solicitações em análise e todo o histórico.</p>
+                    </b-col>
+                </b-row>
 
-            <!-- Componente de cartão do BootstrapVue -->
-            <b-card
-                :key="index"
-                :title="card.title"
-                :img-src="card.img"
-                :img-alt="card.alt"
-                img-top
-                tag="article"
-                style=""
-                class="card mb-2 p-4"
-            >
-            </b-card>
+                <b-row no-gutters fluid class=" d-flex justify-content-center align-items-center">
+                    <!-- Colunas que contêm os cartões de reembolso -->
+                    <b-col 
+                        class="d-flex justify-content-center align-items-center"
+                        v-for="(card, index) in cards"
+                    >
 
-        </b-col>
+                        <!-- Componente de cartão do BootstrapVue -->
+                        <b-card
+                            :key="index"
+                            :title="card.title"
+                            :img-src="card.img"
+                            :img-alt="card.alt"
+                            img-top
+                            tag="article"
+                            style=""
+                            class="card mb-2 p-4"
+                        >
+                        </b-card>
 
-    </b-row>
+                    </b-col>
+                </b-row>
+
+
+            </b-col>
+        </b-row>
+
+    </b-container>
 
 </template>
 
@@ -62,11 +79,17 @@ export default {
 
 <style scoped lang="scss">
 
-/* Estilos para a coluna dos cartões */
-.cardCol {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contentBox {
+    width: 100%;
+    height: 100%;
+    padding-left: 5rem !important;
+}
+
+.pathBox{
+    position: absolute;
+    top:0;
+    left: 8rem;
+    padding: 1rem 0;
 }
 
 /* Estilos para os cartões */
@@ -77,6 +100,10 @@ export default {
     justify-content: center;
     align-items: center !important;
     gap: 1rem;
+
+    .card-title {
+        font-size: 1.2rem;
+    }
 
     img {
         width: 2.5rem;
