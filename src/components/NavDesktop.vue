@@ -10,7 +10,17 @@
 
         <!-- Navegação principal -->
         <b-navbar-nav>
+            <!-- Informações do Usuario -->
+            <div class="userBox">
 
+                <img src="../assets/navbar/iconPhoto.png" alt="Foto do Usuário">
+
+                <div >
+                    <p>Marcos Monte</p>
+                    <p>Desenvolvedor Web</p>
+                </div>
+
+            </div>
             <!-- Item de navegação para a página inicial -->
             <b-nav-item>
                 <b-button class="btn-icon-primary" tag="router-link" to="/home" @click="() => open = false">
@@ -90,22 +100,45 @@
         background-color: #fff;
     }
 
+    .userBox{
+        width: 100%;
+        height: 10rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        // padding-bottom: 2rem;
+        text-align: center;
+        transition: opacity 1.2s ease-in-out;
+        transition: width 0.2s ease-in-out;
+
+        div {
+            width: 100%;
+            height: 60%;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
     .visible {
         width: 200px !important;
         box-shadow: 0px 10px 10px 0 var(--secondary-dark);
-        transition: opacity 0.8s ease-in-out;
+        transition: opacity 1.2s ease-in-out;
         transition: width 0.2s ease-in-out;
     }
 
     .hidden {
         width: 6% !important;
         align-items: flex-start !important;
-        transition: opacity 0.8s ease-in-out;
+        transition: opacity 1.2s ease-in-out;
         transition: width 0.2s ease-in-out;
 
         .navbar-nav p {
             display: none !important;
         }
+
     }
 
     .nav-link{ 
