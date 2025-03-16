@@ -17,7 +17,7 @@ export default {
 <style scoped lang="scss">
   /* Estilo para o container principal */
   #app {
-    height: 100vh; /* Ocupa toda a altura da tela */
+    //height: 100vh; /* Ocupa toda a altura da tela */
     margin: 0; /* Remove margens */
     padding: 0 !important; /* Remove preenchimento */
     // background-color: blue;

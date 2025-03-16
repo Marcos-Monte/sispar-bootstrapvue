@@ -7,7 +7,7 @@
 }
 
 html{
-    height: 100vh;
+    height: 100vh !important;
 }
 
 :root{
@@ -19,6 +19,8 @@ html{
     --secondary-dark: #23282f;
     --secondary: #63758d;
     --secondary-light: #cbd4e1;
+    --orange: #E56700;
+    --green: #007A6A;
 }
 
 // Buttons

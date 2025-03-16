@@ -1,6 +1,6 @@
 <template>
 
-    <b-container no-gutters fluid class="vh-100 overflow-hidden position-relative p-0">
+    <b-container no-gutters fluid class="overflow-hidden position-relative p-0">
 
         <NavBar />
 
@@ -28,10 +28,5 @@ import NavBar from '@/components/NavBar.vue';
 </script>
 
 <style scoped lang="scss">
-
-    .contentBox {
-        width: 100%;
-        height: 100%;
-    }
 
 </style>
