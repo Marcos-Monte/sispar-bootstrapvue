@@ -29,17 +29,20 @@
                     >
 
                         <!-- Componente de cartão do BootstrapVue -->
-                        <b-card
-                            :key="index"
-                            :title="card.title"
-                            :img-src="card.img"
-                            :img-alt="card.alt"
-                            img-top
-                            tag="article"
-                            style=""
-                            class="card mb-2 p-4"
-                        >
-                        </b-card>
+                        <router-link :to="card.route" style="text-decoration: none;">
+                            <b-card
+                                :key="index"
+                                :title="card.title"
+                                :img-src="card.img"
+                                :img-alt="card.alt"
+                                img-top
+                                tag="article"
+                                style=""
+                                class="card mb-2 p-4"
+                                @click=""
+                            >
+                            </b-card>
+                        </router-link>
 
                     </b-col>
                 </b-row>
@@ -89,9 +92,9 @@ export default {
         return {
             // Array de objetos que representam os cartões
             cards: [
-                { img: cardSolicitacao, title: 'Solicitação de Reembolso', alt: 'Icone do card de Solicitações' },
-                { img: cardAnalises, title: 'Verificar Análises', alt: 'Icone do card de Análises' },
-                { img: cardHistorico, title: 'Histórico', alt: 'Icone do card de Historico' },
+                { img: cardSolicitacao, title: 'Solicitação de Reembolso', alt: 'Icone do card de Solicitações', route: '/solicitacoes' },
+                { img: cardAnalises, title: 'Verificar Análises', alt: 'Icone do card de Análises', route: '/analises' },
+                { img: cardHistorico, title: 'Histórico', alt: 'Icone do card de Historico', route: '/historico' },
             ],
 
             indexes: [
@@ -126,6 +129,7 @@ export default {
 .cardsBox:nth-child(even){
     margin: 0 1rem;
 }
+
 .card {
     width: 20rem; 
     height: 15rem;
