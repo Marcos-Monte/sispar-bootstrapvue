@@ -25,13 +25,13 @@
                     <b-col 
 
                         class="d-flex justify-content-center align-items-center p-0 gap-5 cardsBox"
-                        v-for="(card, index) in cards"
+                        v-for="(card, index) in cards" :key="index"
                     >
 
                         <!-- Componente de cartão do BootstrapVue -->
                         <router-link :to="card.route" style="text-decoration: none;">
                             <b-card
-                                :key="index"
+                                
                                 :title="card.title"
                                 :img-src="card.img"
                                 :img-alt="card.alt"
