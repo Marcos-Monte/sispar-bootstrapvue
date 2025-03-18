@@ -4,8 +4,8 @@
 
         <b-row fluid no-gutters >
             <b-col cols="12" class="pathBox d-flex justify-content-start align-items-center gap-3">
-                <img src="../assets/path/iconHomePath.png" alt="Icone de uma casinha">
-                <img src="../assets/path/iconArrowPath.png" alt="Icone de uma seta">
+                <img src="../../assets/path/iconHomePath.png" alt="Icone de uma casinha">
+                <img src="../../assets/path/iconArrowPath.png" alt="Icone de uma seta">
                 <p class="m-0">Reembolsos</p>
             </b-col>
         </b-row>
@@ -73,14 +73,14 @@
 
 <script>
 // Importação das imagens dos cartões
-import cardAnalises from '../assets/home/cardAnalises.png';
-import cardHistorico from '../assets/home/cardHistorico.png';
-import cardSolicitacao from '../assets/home/cardSolicitacoes.png';
+import cardAnalises from '../../assets/home/cardAnalises.png';
+import cardHistorico from '../../assets/home/cardHistorico.png';
+import cardSolicitacao from '../../assets/home/cardSolicitacoes.png';
 // Import de Imagens dos Indices
-import iconAnalise from '../assets/home/iconAnalise.png';
-import iconAprovados from '../assets/home/iconAprovados.png';
-import iconRejeitados from '../assets/home/iconRejeitados.png';
-import iconSolicitacao from '../assets/home/iconSolicitacao.png';
+import iconAnalise from '../../assets/home/iconAnalise.png';
+import iconAprovados from '../../assets/home/iconAprovados.png';
+import iconRejeitados from '../../assets/home/iconRejeitados.png';
+import iconSolicitacao from '../../assets/home/iconSolicitacao.png';
 
 // Importação do componente NavBar
 import NavBar from '@/components/NavBar.vue';

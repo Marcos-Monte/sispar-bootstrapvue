@@ -4,13 +4,13 @@ import VueRouter from 'vue-router'
 // Importando Layouts
 import Home from '../components/layouts/LayoutHome.vue'
 // Importando as views
-import Analises from '../views/Analises.vue'
 import Cadastro from '../views/Cadastro.vue'
-import Dashboard from '../views/Dashboard.vue'
-import Historico from '../views/Historico.vue'
+import Analises from '../views/home/Analises.vue'
+import Dashboard from '../views/home/Dashboard.vue'
+import Historico from '../views/home/Historico.vue'
+import Solicitacoes from '../views/home/Solicitacoes.vue'
 import Login from '../views/Login.vue'
 import NovaSenha from '../views/NovaSenha.vue'
-import Solicitacoes from '../views/Solicitacoes.vue'
 
 
 // Informa ao Vue que será usado o VueRouter
