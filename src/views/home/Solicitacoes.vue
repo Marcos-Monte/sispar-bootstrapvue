@@ -6,7 +6,7 @@
             <b-col cols="12" class="pathBox d-flex justify-content-start align-items-center gap-3">
                 <img src="../../assets/path/iconHomePath.png" alt="Icone de uma casinha">
                 <img src="../../assets/path/iconArrowPath.png" alt="Icone de uma seta">
-                <p class="m-0">Reembolsos</p>
+                <p class="m-0">Solicitações de Reembolsos</p>
             </b-col>
         </b-row>
 
