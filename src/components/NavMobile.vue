@@ -3,9 +3,9 @@
     <!-- Navbar principal que é toggleable em larguras grandes (lg) -->
     <b-navbar toggleable class="navbarBox">
 
-        <b-nav-brand tag="router-link" to="/">
+        <router-link to="/home">
             <img src="../assets/login/logoSispar.png" alt="" >
-        </b-nav-brand>
+        </router-link>
 
         <!-- Botão de toggle para o colapso principal -->
         <b-navbar-toggle target="navbar-toggle-collapse" class="btn-icon-primary">
