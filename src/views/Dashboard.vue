@@ -50,6 +50,7 @@
                 <b-row no-gutters fluid>
 
                     <b-col 
+                        no-gutters
                         class="d-flex justify-content-around align-items-center indexBox">
 
                         <div v-for="(info, index) in indexes" :key="index">
@@ -115,6 +116,10 @@ export default {
     height: 100vh !important;
     padding-left: 5rem !important;
     gap: 3rem;
+
+    h2 {
+        font-weight: 700;
+    }
 }
 
 .pathBox{
@@ -191,13 +196,21 @@ export default {
 }
 
 @media (max-width: 768px){
+    .pathBox {
+        visibility: hidden;
+    }
     .contentBox{
         padding: 6rem 1rem 1rem 1rem !important;
         height: 100% !important;
+        text-align: center;
     }
 
     .cardsBox:nth-child(even){
         margin: 0;
+    }
+
+    .indexBox {
+        margin: 0 1rem;
     }
 }
 

@@ -3,9 +3,9 @@
     <!-- Navbar principal que é toggleable em larguras grandes (lg) -->
     <b-navbar toggleable class="navbarBox">
 
-        <b-navbrand >
-            <img src="../assets/login/logoSispar.png" alt="" tag="router-link" to="/">
-        </b-navbrand>
+        <b-nav-brand tag="router-link" to="/">
+            <img src="../assets/login/logoSispar.png" alt="" >
+        </b-nav-brand>
 
         <!-- Botão de toggle para o colapso principal -->
         <b-navbar-toggle target="navbar-toggle-collapse" class="btn-icon-primary">
@@ -88,6 +88,7 @@
         padding:  1rem;
         justify-content: space-between;
         position: fixed;
+        background-color: #fff;
     }
 
     /* Estilos para os links de navegação */
