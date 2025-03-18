@@ -3,6 +3,10 @@
     <!-- Navbar principal que é toggleable em larguras grandes (lg) -->
     <b-navbar toggleable class="navbarBox">
 
+        <b-navbrand >
+            <img src="../assets/login/logoSispar.png" alt="" tag="router-link" to="/">
+        </b-navbrand>
+
         <!-- Botão de toggle para o colapso principal -->
         <b-navbar-toggle target="navbar-toggle-collapse" class="btn-icon-primary">
             <!-- Template para ícone de toggle -->
@@ -15,17 +19,17 @@
         <!-- Colapso do navbar principal -->
         <b-collapse id="navbar-toggle-collapse" is-nav>
             <!-- Navbar nav com classe condicional baseada na largura da janela -->
-            <b-navbar-nav class="ml-auto p-2">
+            <b-navbar-nav class="ml-auto p-2" style="background-color: #fff; border-radius: 6px 6px 6px 6px; box-shadow: 0px 10px 10px 0px var(--background);">
                 <!-- Imagem do ícone do usuário -->
                 
                 <!-- Item de navegação com nome do usuário -->
                 <b-nav-item>
                     <img src="../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
-                    <p>Marcos Monte</p>
+                    <p class="name">Marcos Monte</p>
                 </b-nav-item>
                 <!-- Item de navegação com cargo do usuário -->
                 <b-nav-item >
-                    <p>Desenvolvedor Front-End</p>
+                    <p class="job">Desenvolvedor Web</p>
                 </b-nav-item>
                 <!-- Item de navegação para a página de início -->
                 <b-nav-item >
@@ -82,7 +86,8 @@
     .navbarBox {
         width: 100%;
         padding:  1rem;
-        justify-content: flex-end;
+        justify-content: space-between;
+        position: fixed;
     }
 
     /* Estilos para os links de navegação */
@@ -96,13 +101,15 @@
         p {
             margin: 0 !important;
         }
+
+        .name, .job {
+            font-weight: 700;
+        }
+
+        .job {
+            color: var(--primary)
+        }
     }
-    /* Estilos para a classe 'open' */
-    // .openItems {
-    //     position: absolute;
-    //     top: 66px;
-    //     right: 0;
-    // }
 
     /* Estilos para o toggle do dropdown */
     .dropdown-toggle {

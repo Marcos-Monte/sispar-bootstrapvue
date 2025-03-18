@@ -15,9 +15,9 @@
 
                 <img src="../assets/navbar/iconPhoto.png" alt="Foto do Usuário">
 
-                <div >
-                    <p>Marcos Monte</p>
-                    <p>Desenvolvedor Web</p>
+                <div>
+                    <p class="name">Marcos Monte</p>
+                    <p class="job">Desenvolvedor Web</p>
                 </div>
 
             </div>
@@ -120,6 +120,14 @@
         p {
             margin: 0;
         }
+
+        .name, .job {
+            font-weight: 700;
+        }
+
+        .job {
+            color: var(--primary);
+        }
     }
 
     .visible {
@@ -148,9 +156,11 @@
         align-items: center;
         gap: .5rem;
 
+        
         p {
             margin: 0 !important;
         }
+        
     }
 
 </style>

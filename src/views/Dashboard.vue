@@ -192,7 +192,7 @@ export default {
 
 @media (max-width: 768px){
     .contentBox{
-        padding: 1rem !important;
+        padding: 6rem 1rem 1rem 1rem !important;
         height: 100% !important;
     }
 
