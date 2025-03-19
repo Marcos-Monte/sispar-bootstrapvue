@@ -109,8 +109,11 @@
                         
                         reponsive
                         :items="computedRegisters"
+                        :fields="fields"
                         :per-page="10"
                         :current-page="currentPage"
+                        sort-icon-left
+                        no-sort-reset
                         aria-controls="my-table"
                     ></b-table>
 
@@ -163,6 +166,13 @@ import NavBar from '@/components/NavBar.vue';
                 },
 
                 registers: [],
+
+                fields: [
+                    { key: 'date', label: 'Data'},
+                    { key: 'name', formatter: (value) => value.toUpperCase(), label: 'Nome'},
+                    { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
+                    { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value).toFixed(2)}`, label: 'Valor'},
+                ],
 
                 currentPage: 1,
             }
