@@ -102,10 +102,11 @@
                 
             </div>
 
-            <div class="row w-100 h-100 d-flex flex-column justify-content-start align-items-center tableBox">
+            <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center tableBox">
 
                 <template v-if="computedRegisters.length > 0">
                     <b-table
+                        
                         reponsive
                         :items="computedRegisters"
                         :per-page="10"
@@ -234,7 +235,8 @@ import NavBar from '@/components/NavBar.vue';
 
 .contentBox {
     width: 100%;
-    height: 100vh !important;
+    min-height: 100vh !important; // Alterado de height para min-height
+    overflow-y: auto; // Garante o scroll quando necessário
     padding-left: 5rem 0 0 0!important;
     gap: 3rem;
 
@@ -252,6 +254,7 @@ import NavBar from '@/components/NavBar.vue';
 
 .box{
     padding-top: 5rem !important;
+    min-height: 100vh !important; // Permite o crescimento da altura conforme o conteúdo
 }
 
 .formBox {
