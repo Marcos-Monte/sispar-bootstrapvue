@@ -5,7 +5,7 @@
         
         <!-- Botão para abrir/fechar a barra de navegação -->
         <b-button class="btn-icon-primary"  @click="handleOpen">
-            <img src="../assets/navbar/iconOpen.png" alt="Icone do Botão que abre a barra de navegação">
+            <img src="../../assets/navbar/iconOpen.png" alt="Icone do Botão que abre a barra de navegação">
         </b-button>
 
         <!-- Navegação principal -->
@@ -13,7 +13,7 @@
             <!-- Informações do Usuario -->
             <div class="userBox">
 
-                <img src="../assets/navbar/iconPhoto.png" alt="Foto do Usuário">
+                <img src="../../assets/navbar/iconPhoto.png" alt="Foto do Usuário">
 
                 <div>
                     <p class="name">Marcos Monte</p>
@@ -24,7 +24,7 @@
             <!-- Item de navegação para a página inicial -->
             <b-nav-item>
                 <b-button class="btn-icon-primary" tag="router-link" to="/home" @click="() => open = false">
-                    <img src="../assets/navbar/iconHome.png" alt="Icone do Botão de Inicio">
+                    <img src="../../assets/navbar/iconHome.png" alt="Icone do Botão de Inicio">
                 </b-button>
                 <p>Início</p>
             </b-nav-item>
@@ -32,7 +32,7 @@
             <!-- Item de navegação para a página de solicitações -->
             <b-nav-item >
                 <b-button class="btn-icon-primary" tag="router-link" to="/solicitacoes" @click="() => open = false">
-                    <img src="../assets/navbar/iconReembolso.png" alt="Icone do Botão de Solicitação de Reembolsos">
+                    <img src="../../assets/navbar/iconReembolso.png" alt="Icone do Botão de Solicitação de Reembolsos">
                 </b-button>
                 <p>Reembolsos</p>
             </b-nav-item>
@@ -40,7 +40,7 @@
             <!-- Item de navegação para a página de análises -->
             <b-nav-item>
                 <b-button class="btn-icon-primary" tag="router-link" to="/analises" @click="() => open = false">
-                    <img src="../assets/navbar/iconAnalises.png" alt="Icone do Botão de Análises">
+                    <img src="../../assets/navbar/iconAnalises.png" alt="Icone do Botão de Análises">
                 </b-button>
                 <p>Análises</p>
             </b-nav-item>
@@ -48,7 +48,7 @@
             <!-- Item de navegação para a página de histórico -->
             <b-nav-item>
                 <b-button class="btn-icon-primary" tag="router-link" to="/historico" @click="() => open = false">
-                    <img src="../assets/navbar/iconHistorico.png" alt="Icone do Botão de Entrar nos Historicos">
+                    <img src="../../assets/navbar/iconHistorico.png" alt="Icone do Botão de Entrar nos Historicos">
                 </b-button>
                 <p>Histórico</p>
             </b-nav-item>
@@ -57,7 +57,7 @@
 
         <!-- Botão para sair/navegar para a página inicial -->
         <b-button class="btn-icon-secondary" tag="router-link" to="/">
-            <img src="../assets/navbar/iconExit.png" alt="Icone do Botão que abre a barra de navegação">
+            <img src="../../assets/navbar/iconExit.png" alt="Icone do Botão que abre a barra de navegação">
         </b-button>
 
     </div>

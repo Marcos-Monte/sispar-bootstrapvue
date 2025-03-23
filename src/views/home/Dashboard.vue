@@ -63,7 +63,6 @@
 
                 </b-row>
 
-
             </b-col>
         </b-row>
 
@@ -83,7 +82,7 @@ import iconRejeitados from '../../assets/home/iconRejeitados.png';
 import iconSolicitacao from '../../assets/home/iconSolicitacao.png';
 
 // Importação do componente NavBar
-import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/navbar/NavBar.vue';
 
 export default {
     // Registro do componente NavBar
@@ -103,7 +102,7 @@ export default {
                 { img:iconAprovados, value: 182, text: 'aprovados', alt: 'icone de ', background: 'orange'},
                 { img:iconRejeitados, value: 182, text: 'rejeitados', alt: 'icone de ', background: 'green'},
                 { img:iconSolicitacao, value: 182, text: 'solicitados', alt: 'icone de ', background: 'accent'},
-        ]
+            ]
         }
     }
 }

@@ -4,7 +4,7 @@
     <b-navbar toggleable class="navbarBox">
 
         <router-link to="/home">
-            <img src="../assets/login/logoSispar.png" alt="" >
+            <img src="../../assets/login/logoSispar.png" alt="" >
         </router-link>
 
         <!-- Botão de toggle para o colapso principal -->
@@ -24,7 +24,7 @@
                 
                 <!-- Item de navegação com nome do usuário -->
                 <b-nav-item>
-                    <img src="../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
+                    <img src="../../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
                     <p class="name">Marcos Monte</p>
                 </b-nav-item>
                 <!-- Item de navegação com cargo do usuário -->
@@ -35,35 +35,35 @@
                 <b-nav-item >
                     <p>Inicio</p>
                     <b-button class="btn-icon-primary" tag="router-link" to="/home">
-                        <img src="../assets/navbar/iconHome.png" alt="">
+                        <img src="../../assets/navbar/iconHome.png" alt="">
                     </b-button>
                 </b-nav-item>
                 <!-- Item de navegação para a página de reembolsos -->
                 <b-nav-item>
                     <p>Reembolsos</p>
                     <b-button class="btn-icon-primary"  tag="router-link" to="/solicitacoes">
-                        <img src="../assets/navbar/iconReembolso.png" alt="">
+                        <img src="../../assets/navbar/iconReembolso.png" alt="">
                     </b-button>
                 </b-nav-item>
                 <!-- Item de navegação para a página de análises -->
                 <b-nav-item>
                     <p>Análises</p>
                     <b-button class="btn-icon-primary"  tag="router-link" to="/analises">
-                        <img src="../assets/navbar/iconAnalises.png" alt="">
+                        <img src="../../assets/navbar/iconAnalises.png" alt="">
                     </b-button>
                 </b-nav-item>
                 <!-- Item de navegação para a página de histórico -->
                 <b-nav-item>
                     <p>Historico</p>
                     <b-button class="btn-icon-primary"  tag="router-link" to="/historico">
-                        <img src="../assets/navbar/iconHistorico.png" alt="">
+                        <img src="../../assets/navbar/iconHistorico.png" alt="">
                     </b-button>
                 </b-nav-item>
                 <!-- Item de navegação para a página de login -->
                 <b-nav-item>
                     <p>Exit</p>
                     <b-button class="btn-icon-secondary"  tag="router-link" to="/">
-                        <img src="../assets/navbar/iconExit.png" alt="">
+                        <img src="../../assets/navbar/iconExit.png" alt="">
                     </b-button>
                 </b-nav-item>
             </b-navbar-nav>
