@@ -19,7 +19,7 @@
 
                         <div class="col">
                             <label for="name" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" aria-label="name" required v-model="form.name">
+                            <input type="text" class="form-control" aria-label="name" required v-model="form.name"  style="text-transform: uppercase;">
                         </div>
 
                         <div class="col col-12 col-md-4">
@@ -35,7 +35,7 @@
 
                         <div class="col-12">
                             <label for="description" class="form-label">Motivo do Reembolso</label>
-                            <textarea class="form-control" id="description" rows="3" placeholder="Descreva o motivo do reembolso..." v-model="form.description"></textarea>
+                            <textarea class="form-control" id="description" rows="3" placeholder="Descreva o motivo do reembolso..." v-model="form.description" style="text-transform: uppercase;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,6 @@
 
                 <template v-if="computedRegisters.length > 0">
                     <b-table
-                        
                         reponsive
                         :items="computedRegisters"
                         :fields="fields"
@@ -146,8 +145,8 @@
 </template>
 
 <script>
-
 import NavBar from '@/components/navbar/NavBar.vue';
+import { v4 as uuidv4 } from 'uuid';
 
     export default {
 
@@ -156,6 +155,7 @@ import NavBar from '@/components/navbar/NavBar.vue';
         data(){
             return {
                 form: {
+                    id: uuidv4(),
                     name: '',
                     enterprise: '',
                     description: '',
@@ -168,10 +168,12 @@ import NavBar from '@/components/navbar/NavBar.vue';
                 registers: [],
 
                 fields: [
-                    { key: 'date', label: 'Data'},
+                    { key: 'date', label: 'Data', formatter: (value) => {
+                        return new Date(value).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+                    }},
                     { key: 'name', formatter: (value) => value.toUpperCase(), label: 'Nome'},
                     { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
-                    { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value).toFixed(2)}`, label: 'Valor'},
+                    { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value.replace('.', ',')).toFixed(2)}`, label: 'Valor'},
                 ],
 
                 currentPage: 1,
