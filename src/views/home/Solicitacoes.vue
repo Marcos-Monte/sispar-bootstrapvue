@@ -114,7 +114,10 @@
                         sort-icon-left
                         no-sort-reset
                         aria-controls="my-table"
-                    ></b-table>
+                        @row-clicked="handleRowClick"
+                    >
+                    
+                </b-table>
 
                     <b-pagination
                         v-if="computedRegisters.length > 10"
@@ -205,7 +208,7 @@ import { v4 as uuidv4 } from 'uuid';
                         this.registers = JSON.parse(savedRegisters)
                     }
 
-                    console.log('Registros: ', this.registers)
+                   // console.log('Registros: ', this.registers)
 
                 } catch(error){
                     console.error('Erro ao carregar Registros!', error)
@@ -222,6 +225,12 @@ import { v4 as uuidv4 } from 'uuid';
                     currency: 'Selecione',
                     expenseValue: ''
                 }
+            },
+
+            handleRowClick(item, index, event){
+                //console.log('Item:', item);  // Exibe o item completo
+                console.log('Item:', item);  // Exibe o índice da linha
+                //console.log('Evento:', event);  // Exibe o evento de clique
             }
         },
 

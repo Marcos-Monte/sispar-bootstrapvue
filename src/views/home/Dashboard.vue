@@ -110,7 +110,8 @@ export default {
     methods: {
         closeMenu(){
             barramento.$emit('fechouMenu', false); // Envia valor sempre que o evento for emitido
-        }
+        },
+
     }
 }
 </script>
