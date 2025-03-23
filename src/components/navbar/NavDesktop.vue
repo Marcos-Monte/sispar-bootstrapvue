@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import barramento from '@/data/eventBus';
 
     export default {
 
@@ -79,7 +80,17 @@
             handleOpen(){
                 return this.open = !this.open;
             }
-        }
+        },
+
+        mounted(){
+            barramento.$on('fechouMenu', (evento) => {
+                this.open = evento
+            })
+        },
+
+        beforeDestroy() {
+            barramento.$off("fechouMenu", this.fecharMenu);
+        },
     }
 
 </script>

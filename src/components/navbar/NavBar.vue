@@ -31,8 +31,8 @@ import NavMobile from './NavMobile.vue';
         },
 
         beforeDestroy() {
-        window.removeEventListener('resize', this.handleResize);
-    }
+            window.removeEventListener('resize', this.handleResize);
+        }
     }
 
 </script>

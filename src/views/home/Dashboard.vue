@@ -39,7 +39,7 @@
                                 tag="article"
                                 style=""
                                 class="card mb-2 p-4"
-                                @click=""
+                                @click="closeMenu()"
                             >
                             </b-card>
                         </router-link>
@@ -83,6 +83,7 @@ import iconSolicitacao from '../../assets/home/iconSolicitacao.png';
 
 // Importação do componente NavBar
 import NavBar from '@/components/navbar/NavBar.vue';
+import barramento from '@/data/eventBus';
 
 export default {
     // Registro do componente NavBar
@@ -103,6 +104,12 @@ export default {
                 { img:iconRejeitados, value: 182, text: 'rejeitados', alt: 'icone de ', background: 'green'},
                 { img:iconSolicitacao, value: 182, text: 'solicitados', alt: 'icone de ', background: 'accent'},
             ]
+        }
+    },
+
+    methods: {
+        closeMenu(){
+            barramento.$emit('fechouMenu', false); // Envia valor sempre que o evento for emitido
         }
     }
 }
