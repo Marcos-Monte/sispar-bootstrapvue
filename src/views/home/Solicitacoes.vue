@@ -102,43 +102,72 @@
                 
             </div>
 
-            <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center tableBox">
+            <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center">
 
                 <template v-if="computedRegisters.length > 0">
-                    <b-table
-                        reponsive
-                        :items="computedRegisters"
-                        :fields="fields"
-                        :per-page="10"
-                        :current-page="currentPage"
-                        sort-icon-left
-                        no-sort-reset
-                        aria-controls="my-table"
-                        @row-clicked="handleRowClick"
-                    >
-                    
-                </b-table>
 
-                    <b-pagination
-                        v-if="computedRegisters.length > 10"
-                        first-number
-                        align="fill"
-                        v-model="currentPage"
-                        :total-rows="rows"
-                        :per-page="10"
-                        aria-controls="my-table"
-                    ></b-pagination>
-                </template>
+                    <div class="tableBox">
+
+                        <b-table
+                            reponsive
+                            :items="computedRegisters"
+                            :fields="fields"
+                            :per-page="10"
+                            :current-page="currentPage"
+                            sort-icon-left
+                            no-sort-reset
+                            aria-controls="my-table"
+                        >
+                            <!-- Template para a coluna de ações -->
+                            <template #cell(actions)="data">
+                                <b-button @click="deleteRegister(data.item)" size="sm" class="btn-delete">
+                                    <img src="../../assets/reembolsos/lixoIcon.png" alt="Ícone para apagar registro da lista de registros ">
+                                </b-button>
+                            </template>
+                        </b-table>
+                    
+                        <b-pagination
+                            v-if="computedRegisters.length > 10"
+                            first-number
+                            align="fill"
+                            v-model="currentPage"
+                            :total-rows="rows"
+                            :per-page="10"
+                            aria-controls="my-table"
+                        ></b-pagination>
+
+                    </div>
+
+            </template>
 
                 <template v-else>
-                    <h3 class="text-center">Não há registros!</h3>
+                    <div class="tableBox" style="justify-content: center !important;">
+                        <h3 class="text-center">Não há registros!</h3>
+                    </div>
                 </template>
 
             </div>
 
-            <b-row >
-                Footer
-            </b-row>
+            <div class="container-fluid">
+                <div class="row d-flex justify-content-end alig-items-center py-2 gap-3" >
+
+                    <div class="col-sm-12 col-md-3">
+                        <label for="name" class="form-label">Total Despesa</label>
+                        <input type="text" class="form-control" aria-label="name" required v-model="expenseSum"  disabled style="text-transform: uppercase;" />
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-end gap-2">
+                        <b-button class="btn-primary-dark">
+                            <img src="../../assets/reembolsos/confirmIcon.png" alt="Ícone de confirmação de envio de solicitação para análises">
+                            Enviar para Análise
+                        </b-button>
+                        <b-button class="btn-accent">
+                            <img src="../../assets/reembolsos/cancelIcon.png" alt="Ícone de confirmação de envio de solicitação para análises">
+                            Cancelar Solicitação
+                        </b-button>
+                    </div>
+                </div>
+            </div>
 
         </b-container>
 
@@ -171,15 +200,22 @@ import { v4 as uuidv4 } from 'uuid';
                 registers: [],
 
                 fields: [
+                    { key: "actions", label: "" }, // Adicionando coluna de ações
                     { key: 'date', label: 'Data', formatter: (value) => {
                         return new Date(value).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
                     }},
                     { key: 'name', formatter: (value) => value.toUpperCase(), label: 'Nome'},
                     { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
                     { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value.replace('.', ',')).toFixed(2)}`, label: 'Valor'},
+                    
                 ],
 
                 currentPage: 1,
+
+                solicitation: {
+                    id: uuidv4(),
+                    expenseTotal: 0,
+                }
             }
         },
 
@@ -218,7 +254,7 @@ import { v4 as uuidv4 } from 'uuid';
             clearForm(){
                 this.form = {
                     name: '',
-                    enterprise: 'Selecione',
+                    enterprise: '',
                     description: '',
                     date: '',
                     expenseType: 'Selecione',
@@ -227,10 +263,21 @@ import { v4 as uuidv4 } from 'uuid';
                 }
             },
 
-            handleRowClick(item, index, event){
-                //console.log('Item:', item);  // Exibe o item completo
-                console.log('Item:', item);  // Exibe o índice da linha
-                //console.log('Evento:', event);  // Exibe o evento de clique
+            deleteRegister(item){
+                // Possíveis Parametros: Item, Index e Event
+                
+                try {
+                    const id = item.id;
+                    const newRegisters = this.registers.filter(
+                        (register) => register.id !== id
+                    )
+                    this.registers = newRegisters
+                    localStorage.setItem('registers', JSON.stringify(this.registers));
+
+                } catch(error){
+                    console.error('Não foi posssível deletar o item selecionado: ', error)
+                }
+
             }
         },
 
@@ -245,6 +292,15 @@ import { v4 as uuidv4 } from 'uuid';
 
             rows(){
                 return this.registers.length
+            },
+
+            expenseSum(){
+                const total = this.registers.reduce( 
+                    (expenseTotal ,register) => parseFloat(expenseTotal) + parseFloat(register.expenseValue), 0
+                )
+                console.log(total)
+                this.expenseTotal = total
+                return  `$ ${total.toFixed(2)}`;
             }
         }
 
@@ -258,7 +314,7 @@ import { v4 as uuidv4 } from 'uuid';
     width: 100%;
     min-height: 100vh !important; // Alterado de height para min-height
     overflow-y: auto; // Garante o scroll quando necessário
-    padding-left: 5rem 0 0 0!important;
+    padding-left: 8rem !important;
     gap: 3rem;
 
     h2 {
@@ -279,19 +335,38 @@ import { v4 as uuidv4 } from 'uuid';
 }
 
 .formBox {
-    padding-left: 5rem;
+    // padding-left: 5rem;
+    width: 100%;
     display: flex;
     align-items: center;
-
+    justify-content: space-around;
 }
 
 .tableBox{
-    padding-left: 8rem;
+    //min-height: 50%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: solid .8px var(--secondary);
+    border-radius: 6px;
+
+    .btn-delete{
+        width: 100%;
+        background-color: transparent;
+        border: none;
+
+        &:hover {
+            background-color: var(--accent);
+        }
+    }
 }
 
+
 @media (max-width: 768px){
-    .formBox, .tableBox{
-        padding-left: 0;
+    .contentBox{
+        padding-left: 0 !important;
     }
 }
 

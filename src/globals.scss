@@ -44,6 +44,16 @@ html{
     }
 }
 
+.btn-accent {
+    background-color: var(--accent) !important;
+    color: white !important;
+    border: none !important;
+
+    &:hover{
+        background-color: var(--secondary-dark) !important;
+    }
+}
+
 .btn-icon-primary {
     width: 2.5rem;
     height: 2.5rem;
