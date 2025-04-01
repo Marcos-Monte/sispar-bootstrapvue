@@ -13,7 +13,7 @@
             <!-- Informações do Usuario -->
             <div class="userBox">
 
-                <img src="../../assets/navbar/iconPhoto.png" alt="Foto do Usuário">
+                <img src="../../assets/navbar/cartoon.webp" alt="Foto do Usuário">
 
                 <div>
                     <p class="name">Marcos Monte</p>
@@ -122,6 +122,11 @@ import barramento from '@/data/eventBus';
         text-align: center;
         transition: opacity 1.2s ease-in-out;
         transition: width 0.2s ease-in-out;
+
+        img {
+            width: 50px;
+            border-radius: 50%;
+        }
 
         div {
             width: 100%;

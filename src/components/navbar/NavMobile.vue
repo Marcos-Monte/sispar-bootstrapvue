@@ -24,7 +24,7 @@
                 
                 <!-- Item de navegação com nome do usuário -->
                 <b-nav-item>
-                    <img src="../../assets/navbar/iconPhoto.png" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
+                    <img src="../../assets/navbar/cartoon.webp" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
                     <p class="name">Marcos Monte</p>
                 </b-nav-item>
                 <!-- Item de navegação com cargo do usuário -->

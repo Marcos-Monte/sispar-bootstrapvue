@@ -104,13 +104,13 @@
 
             <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center">
 
-                <template v-if="computedRegisters.length > 0">
+                <template v-if="registers.length > 0">
 
                     <div class="tableBox">
 
                         <b-table
                             reponsive
-                            :items="computedRegisters"
+                            :items="registers"
                             :fields="fields"
                             :per-page="10"
                             :current-page="currentPage"
@@ -127,7 +127,7 @@
                         </b-table>
                     
                         <b-pagination
-                            v-if="computedRegisters.length > 10"
+                            v-if="registers.length > 10"
                             first-number
                             align="fill"
                             v-model="currentPage"
@@ -178,6 +178,7 @@
 
 <script>
 import NavBar from '@/components/navbar/NavBar.vue';
+import http from '@/config';
 import { v4 as uuidv4 } from 'uuid';
 
     export default {
@@ -205,7 +206,7 @@ import { v4 as uuidv4 } from 'uuid';
                         return new Date(value).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
                     }},
                     { key: 'name', formatter: (value) => value.toUpperCase(), label: 'Nome'},
-                    { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
+                { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
                     { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value.replace('.', ',')).toFixed(2)}`, label: 'Valor'},
                     
                 ],
@@ -220,37 +221,6 @@ import { v4 as uuidv4 } from 'uuid';
         },
 
         methods: {
-            postRegister(){
-
-                try{
-                
-                    this.registers.push({...this.form});
-
-                    localStorage.setItem('registers', JSON.stringify(this.registers));
-
-                    this.form = {};
-
-
-                } catch(error){
-                    console.error('Erro ao registrar, tente novamente!', error)
-                }
-            },
-
-            loadRegisters(){
-                try {
-                    const savedRegisters = localStorage.getItem('registers');
-
-                    if (savedRegisters){
-                        this.registers = JSON.parse(savedRegisters)
-                    }
-
-                   // console.log('Registros: ', this.registers)
-
-                } catch(error){
-                    console.error('Erro ao carregar Registros!', error)
-                }
-            }, 
-
             clearForm(){
                 this.form = {
                     name: '',
@@ -263,22 +233,61 @@ import { v4 as uuidv4 } from 'uuid';
                 }
             },
 
-            deleteRegister(item){
+            async postRegister(){
+
+                try{
+                    await http.post('/', {
+                        id: uuidv4(),
+                        name: this.form.name,
+                        enterprise: this.form.enterprise,
+                        description: this.form.description,
+                        date: this.form.date,
+                        expenseType: this.form.expenseType,
+                        currency: this.form.currency,
+                        expenseValue: this.form.expenseValue
+                    })
+
+                    this.loadRegisters()
+
+                    this.form = {};
+
+                } catch(error){
+                    console.error('Erro ao registrar, tente novamente!', error)
+                }
+            },
+
+            async deleteRegister(item){
                 // Possíveis Parametros: Item, Index e Event
                 
                 try {
                     const id = item.id;
-                    const newRegisters = this.registers.filter(
-                        (register) => register.id !== id
-                    )
-                    this.registers = newRegisters
-                    localStorage.setItem('registers', JSON.stringify(this.registers));
+
+                    if (!id) {
+                        throw new Error("ID do item não encontrado.");
+                    }
+
+                    await http.delete(`/?column=id&value=${id}`)
+
+                    this.loadRegisters()
 
                 } catch(error){
                     console.error('Não foi posssível deletar o item selecionado: ', error)
                 }
 
-            }
+            },
+
+            async loadRegisters(){
+                try {
+
+                    const response = await http.get('/')
+                    
+                    this.registers = response.data
+
+                } catch(error){
+                    console.error('Erro ao carregar Registros!', error)
+                }
+            }, 
+
         },
 
         mounted(){
@@ -286,9 +295,6 @@ import { v4 as uuidv4 } from 'uuid';
         },
 
         computed: {
-            computedRegisters(){
-                return this.registers
-            },
 
             rows(){
                 return this.registers.length
