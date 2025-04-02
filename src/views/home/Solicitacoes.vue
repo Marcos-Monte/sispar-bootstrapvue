@@ -103,11 +103,19 @@
             </div>
 
             <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center">
-
-                <template v-if="registers.length > 0">
-
+                
+                
+                <template v-if="(registers.length > 0)">
+                    
                     <div class="tableBox">
-
+                        <b-overlay :show="loading">
+                            <div class="overlay__inner mt-5">
+                                <div class="overlay__content overlayClass">
+                                    <span class="spinner"></span>
+                                </div>
+                            </div>
+                        </b-overlay>
+                        
                         <b-table
                             reponsive
                             :items="registers"
@@ -157,7 +165,7 @@
                     </div>
 
                     <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-end gap-2">
-                        <b-button class="btn-primary-dark">
+                        <b-button class="btn-primary-dark" @click="sendRequest">
                             <img src="../../assets/reembolsos/confirmIcon.png" alt="Ícone de confirmação de envio de solicitação para análises">
                             Enviar para Análise
                         </b-button>
@@ -187,6 +195,7 @@ import { v4 as uuidv4 } from 'uuid';
 
         data(){
             return {
+                loading: false,
                 form: {
                     id: uuidv4(),
                     name: '',
@@ -195,7 +204,8 @@ import { v4 as uuidv4 } from 'uuid';
                     date: '',
                     expenseType: '',
                     currency: '',
-                    expenseValue: ''
+                    expenseValue: '',
+
                 },
 
                 registers: [],
@@ -206,7 +216,7 @@ import { v4 as uuidv4 } from 'uuid';
                         return new Date(value).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
                     }},
                     { key: 'name', formatter: (value) => value.toUpperCase(), label: 'Nome'},
-                { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
+                    { key: 'enterprise', formatter: (value) => value.toUpperCase(), label: 'Cliente'},
                     { key: 'expenseValue', formatter: (value) => `R$${parseFloat(value.replace('.', ',')).toFixed(2)}`, label: 'Valor'},
                     
                 ],
@@ -241,10 +251,11 @@ import { v4 as uuidv4 } from 'uuid';
                         name: this.form.name,
                         enterprise: this.form.enterprise,
                         description: this.form.description,
-                        date: this.form.date,
+                        date: this.form.date ? this.form.date: new Date(),
                         expenseType: this.form.expenseType,
                         currency: this.form.currency,
-                        expenseValue: this.form.expenseValue
+                        expenseValue: this.form.expenseValue,
+                        status: '',
                     })
 
                     this.loadRegisters()
@@ -277,16 +288,48 @@ import { v4 as uuidv4 } from 'uuid';
             },
 
             async loadRegisters(){
+                this.loading = true
+
                 try {
 
                     const response = await http.get('/')
+
+                    const responseFilteres = response.data.filter(
+                        (obj) => obj.status === ''
+                    )
                     
-                    this.registers = response.data
+                    this.registers = responseFilteres
+
+                    this.loading = false
 
                 } catch(error){
                     console.error('Erro ao carregar Registros!', error)
                 }
             }, 
+
+            async sendRequest(){
+                try {
+
+                    if(!this.registers){
+                        return
+                    }
+
+                    for(let obj of this.registers) {
+                        //registro.status = 'analisando';
+
+                        if(!obj.status) {
+                            await http.put(`id/${obj.id}`, {
+                                status: 'analisando'
+                            })
+                        }
+                    }
+
+                    this.loadRegisters()
+
+                } catch(error){
+                    console.error('Não foi possível enviar requisições: ', error)
+                }
+            }
 
         },
 
@@ -304,7 +347,6 @@ import { v4 as uuidv4 } from 'uuid';
                 const total = this.registers.reduce( 
                     (expenseTotal ,register) => parseFloat(expenseTotal) + parseFloat(register.expenseValue), 0
                 )
-                console.log(total)
                 this.expenseTotal = total
                 return  `$ ${total.toFixed(2)}`;
             }
@@ -315,6 +357,7 @@ import { v4 as uuidv4 } from 'uuid';
 </script>
 
 <style scoped lang="scss">
+
 
 .contentBox {
     width: 100%;

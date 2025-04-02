@@ -58,7 +58,7 @@
                             <span>{{ info.value }}</span>
                             <p>{{ info.text }}</p>
                         </div>
-
+                        <!-- {{ analizing }} -->
                     </b-col>
 
                 </b-row>
@@ -85,6 +85,8 @@ import iconSolicitacao from '../../assets/home/iconSolicitacao.png';
 import NavBar from '@/components/navbar/NavBar.vue';
 import barramento from '@/data/eventBus';
 
+import http from '@/config';
+
 export default {
     // Registro do componente NavBar
     components: { NavBar },
@@ -98,12 +100,16 @@ export default {
                 { img: cardHistorico, title: 'Histórico', alt: 'Icone do card de Historico', route: '/historico' },
             ],
 
-            indexes: [
-                { img:iconAnalise, value: 182, text: 'analisando', alt: 'icone de ', background: 'primary-light'},
-                { img:iconAprovados, value: 182, text: 'aprovados', alt: 'icone de ', background: 'orange'},
-                { img:iconRejeitados, value: 182, text: 'rejeitados', alt: 'icone de ', background: 'green'},
-                { img:iconSolicitacao, value: 182, text: 'solicitados', alt: 'icone de ', background: 'accent'},
-            ]
+            indexes: [],
+
+            registers: [],
+
+            indexesValues: {
+                analizing: '',
+                approved: '',
+                rejected: '',
+                requested: '',
+            }
         }
     },
 
@@ -112,7 +118,47 @@ export default {
             barramento.$emit('fechouMenu', false); // Envia valor sempre que o evento for emitido
         },
 
-    }
+        async loadRegisters(){
+            this.loading = true
+            try {
+                const response = await http.get('/')
+                this.registers = response.data
+                this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
+            } catch(error){
+                console.error('Erro ao carregar Registros!', error)
+            }
+        }, 
+        filtered(){
+            // Filtra os registros com base nos status
+            this.indexesValues.analizing = this.registers.filter(
+                (obj) => obj.status === 'analisando'
+            ).length
+            this.indexesValues.approved = this.registers.filter(
+                (obj) => obj.status === 'aprovado'
+            ).length
+            this.indexesValues.rejected = this.registers.filter(
+                (obj) => obj.status === 'rejeitado'
+            ).length
+            this.indexesValues.requested = this.registers.length
+            // Atualiza os indices que serão renderizados
+            this.updateIndexes();
+        },
+
+        updateIndexes(){
+            // Atualiza os indices
+            this.indexes = [
+                { img: iconAnalise, value: this.indexesValues.analizing, text: 'analisando', alt: 'Ícone de análise', background: 'primary-light' },
+                { img: iconAprovados, value: this.indexesValues.approved, text: 'aprovados', alt: 'Ícone de aprovados', background: 'orange' },
+                { img: iconRejeitados, value: this.indexesValues.rejected, text: 'rejeitados', alt: 'Ícone de rejeitados', background: 'green' },
+                { img: iconSolicitacao, value: this.indexesValues.requested, text: 'solicitados', alt: 'Ícone de solicitações', background: 'accent' }
+            ];
+        }
+    },
+
+    mounted(){
+        this.loadRegisters()
+    },
+
 }
 </script>
 
