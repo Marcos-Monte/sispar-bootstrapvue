@@ -23,12 +23,15 @@
                         </div>
 
                         <div class="col col-12 col-md-4">
-                            <label for="enterprise" class="form-label">Empresa</label>
-                            <select class="form-select" aria-label="enterprise" required v-model="form.enterprise">
+                            <label for="position" class="form-label">Cargo</label>
+                            <select class="form-select" aria-label="position" required v-model="form.position">
                                 <option selected value="">Selecione</option>
-                                <option value="A">Empresa A</option>
-                                <option value="B">Empresa B</option>
-                                <option value="C">Empresa C</option>
+                                <option value="frontend">Dev Front-End</option>
+                                <option value="backend">Dev Back-End</option>
+                                <option value="po">P.O.</option>
+                                <option value="cto">CTO</option>
+                                <option value="devops">DEVOPS</option>
+                                <option value="qa">QA</option>
                                 <option value="outro">Outro</option>
                             </select>
                         </div>
@@ -65,16 +68,15 @@
                         </div>
 
                         <div class="col col-12 col-lg-3">
-                                <label for="currency" class="form-label">Moeda</label>
-                                <select class="form-select" aria-label="currency" required v-model="form.currency">
-                                    <option selected value="">Selecione</option>
-                                    <option value="brl">BRL</option>
-                                    <option value="usd">USD</option>
-                                    <option value="aur">EUR</option>
-                                    <option value="cny">CNY</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
+                            <label for="enterprise" class="form-label">Cliente</label>
+                            <select class="form-select" aria-label="enterprise" required v-model="form.enterprise">
+                                <option selected value="">Selecione</option>
+                                <option value="A">Empresa A</option>
+                                <option value="B">Empresa B</option>
+                                <option value="C">Empresa C</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
                         
                         <div class="col-12">
                             <label for="expenseValue" class="form-label">Total Despesa</label>
@@ -146,7 +148,7 @@
 
                     </div>
 
-            </template>
+                </template>
 
                 <template v-else>
                     <div class="tableBox" style="justify-content: center !important;">
@@ -203,7 +205,7 @@ import { v4 as uuidv4 } from 'uuid';
                     description: '',
                     date: '',
                     expenseType: '',
-                    currency: '',
+                    position: '',
                     expenseValue: '',
 
                 },
@@ -238,7 +240,7 @@ import { v4 as uuidv4 } from 'uuid';
                     description: '',
                     date: '',
                     expenseType: 'Selecione',
-                    currency: 'Selecione',
+                    position: 'Selecione',
                     expenseValue: ''
                 }
             },
@@ -253,7 +255,7 @@ import { v4 as uuidv4 } from 'uuid';
                         description: this.form.description,
                         date: this.form.date ? this.form.date: new Date(),
                         expenseType: this.form.expenseType,
-                        currency: this.form.currency,
+                        position: this.form.position,
                         expenseValue: this.form.expenseValue,
                         status: '',
                     })
