@@ -1,6 +1,10 @@
 <template>
 
-    <component :is="windowWidth < 768? 'NavMobile': 'NavDesktop'" style="z-index: 10000000;"/>
+    <component 
+        :is="windowWidth < 768? 'NavMobile': 'NavDesktop'" 
+        style="z-index: 10000000;"
+        
+    />
 
 </template>
 

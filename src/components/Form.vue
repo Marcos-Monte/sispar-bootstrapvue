@@ -64,13 +64,14 @@
 </template>
 
 <script>
-
+import users from '@/data/users';
     export default {
 
         data() {
             return {
+                myUsers: [],
                 user: { email: '', senha: '' }, // Dados do usuário
-                login: { email: 'marcos@gmail.com', senha: '123' }, // Dados de login para validação
+                //login: { email: 'marcos@gmail.com', senha: '123' }, // Dados de login para validação
                 erro: '', // Mensagem de erro
                 showError: false // Controle de exibição do erro
             }
@@ -86,29 +87,60 @@
                         }, 3000)
                         return;
                     }
-                    // Verifica se o email e senha correspondem aos dados de login
-                    if (this.login.email === this.user.email) {
 
-                        if (this.login.senha === this.user.senha){
-                            this.$router.push('/home'); // Redireciona para a página inicial
+                    for(let user of this.myUsers){
+
+                        if(this.user.email === user.username) {
+
+                            if(this.user.senha === user.password){
+                                console.loga(user.password)
+                                this.$router.push('/home'); // Redireciona para a página inicial
+                                
+                            } else {
+                                this.erro = 'Senha incorreta'; // Define mensagem de erro
+                                this.showError = true; // Exibe mensagem de erro
+
+                                setTimeout(() => {
+                                    this.showError = false; // Oculta mensagem de erro após 3 segundos
+                                }, 3000)
+                                
+                            }
                         } else {
-                            this.erro = 'Senha incorreta'; // Define mensagem de erro
+                            this.erro = 'Email não cadastrado'; // Define mensagem de erro
                             this.showError = true; // Exibe mensagem de erro
                             setTimeout(() => {
                                 this.showError = false; // Oculta mensagem de erro após 3 segundos
                             }, 3000)
                         }
-                    } else {
-                        this.erro = 'Email não cadastrado'; // Define mensagem de erro
-                        this.showError = true; // Exibe mensagem de erro
-                        setTimeout(() => {
-                            this.showError = false; // Oculta mensagem de erro após 3 segundos
-                        }, 3000)
                     }
+                    // // Verifica se o email e senha correspondem aos dados de login
+                    // if (this.login.email === this.user.email) {
+
+                    //     if (this.login.senha === this.user.senha){
+                    //         this.$router.push('/home'); // Redireciona para a página inicial
+                    //     } else {
+                    //         this.erro = 'Senha incorreta'; // Define mensagem de erro
+                    //         this.showError = true; // Exibe mensagem de erro
+                    //         setTimeout(() => {
+                    //             this.showError = false; // Oculta mensagem de erro após 3 segundos
+                    //         }, 3000)
+                    //     }
+                    // } else {
+                    //     this.erro = 'Email não cadastrado'; // Define mensagem de erro
+                    //     this.showError = true; // Exibe mensagem de erro
+                    //     setTimeout(() => {
+                    //         this.showError = false; // Oculta mensagem de erro após 3 segundos
+                    //     }, 3000)
+                    // }
                 } catch (error) {
                     console.error('Erro: ',error); // Exibe erro no console
                 }
             }
+        },
+
+        mounted(){
+            this.myUsers = users
+            console.log(this.myUsers)
         }
 
     }
