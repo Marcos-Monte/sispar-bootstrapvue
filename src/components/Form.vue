@@ -54,7 +54,7 @@
             
             <!-- Botão para criar conta -->
             <b-col cols="5" class="p-0">
-                <b-button class="w-100 btn-primary-light" tag="router-link" to="/cadastro">Criar conta</b-button>
+                <b-button class="w-100 btn-primary-light" tag="router-link" to="/admin/cadastro">Criar conta</b-button>
             </b-col>
             
         </b-row>

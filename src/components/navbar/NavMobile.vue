@@ -62,7 +62,7 @@
                 <!-- Item de navegação para a página de login -->
                 <b-nav-item>
                     <p>Exit</p>
-                    <b-button class="btn-icon-secondary"  tag="router-link" to="/">
+                    <b-button class="btn-icon-secondary" @click="logoff">
                         <img src="../../assets/navbar/iconExit.png" alt="">
                     </b-button>
                 </b-nav-item>
@@ -76,7 +76,14 @@
 <script>
 
     export default {
-        props: ['userName', 'userPosition', 'userPhoto']
+        props: ['userName', 'userPosition', 'userPhoto'],
+
+        methods: {
+            logoff(){
+                localStorage.removeItem('user')
+                this.$router.push('/')
+            }
+        }
     }
 
 </script>

@@ -20,11 +20,11 @@
                     </b-col>
                 </b-row>
 
-                <b-row no-gutters fluid class="d-flex justify-content-center align-items-center">
+                <b-row no-gutters fluid class="d-flex justify-content-between align-items-center gap-4 mb-5">
                     <!-- Colunas que contêm os cartões de reembolso -->
                     <b-col 
-
-                        class="d-flex justify-content-center align-items-center p-0 gap-5 cardsBox"
+                        no-gutters
+                        class="d-flex justify-content-center align-items-center p-0 cardsBox"
                         v-for="(card, index) in cards" :key="index"
                     >
 
@@ -194,7 +194,8 @@ export default {
     justify-content: center;
     align-items: center !important;
     gap: 1rem;
-    margin: 0 1rem;
+    margin: 0 !important;
+    //margin: 0 1rem;
     border: 0.8px solid var(--secondary-dark) ;
 
     .card-title {

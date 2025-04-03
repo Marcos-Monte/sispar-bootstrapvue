@@ -56,7 +56,7 @@
         </b-navbar-nav>
 
         <!-- Botão para sair/navegar para a página inicial -->
-        <b-button class="btn-icon-secondary" tag="router-link" to="/">
+        <b-button class="btn-icon-secondary" @click="logoff">
             <img src="../../assets/navbar/iconExit.png" alt="Icone do Botão que abre a barra de navegação">
         </b-button>
 
@@ -80,6 +80,11 @@ import barramento from '@/data/eventBus';
             // Método para alternar o estado da barra de navegação
             handleOpen(){
                 return this.open = !this.open;
+            },
+
+            logoff(){
+                localStorage.removeItem('user')
+                this.$router.push('/')
             }
         },
 
