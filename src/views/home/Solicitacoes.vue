@@ -171,7 +171,7 @@
                             <img src="../../assets/reembolsos/confirmIcon.png" alt="Ícone de confirmação de envio de solicitação para análises">
                             Enviar para Análise
                         </b-button>
-                        <b-button class="btn-accent">
+                        <b-button class="btn-accent" @click="cancelRequest">
                             <img src="../../assets/reembolsos/cancelIcon.png" alt="Ícone de confirmação de envio de solicitação para análises">
                             Cancelar Solicitação
                         </b-button>
@@ -330,6 +330,23 @@ import { v4 as uuidv4 } from 'uuid';
 
                 } catch(error){
                     console.error('Não foi possível enviar requisições: ', error)
+                }
+            },
+
+            async cancelRequest(){
+                this.loading = true;
+                try {
+                    if(!this.registers){
+                        return
+                    }
+
+                    for(let register of this.registers){
+                        await this.deleteRegister(register)
+                    }
+
+                    this.loading = false
+                } catch(error){
+                    console.error('Não foi possível cancelar a requisição: ', error)
                 }
             }
 
