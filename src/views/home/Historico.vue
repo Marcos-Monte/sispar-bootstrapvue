@@ -40,7 +40,11 @@
                             aria-controls="my-table"
                         >
 
-                        <template #table-caption> Histórico de Solicitações de Reembolsos </template>
+                        <template #table-caption>
+                            <p style="text-transform: capitalize;">
+                                histórico de solicitações de {{ user.name }}
+                            </p>
+                        </template>
 
                         </b-table>
                     
@@ -100,7 +104,9 @@ import http from '@/config';
                     }},
                     { key: 'expenseValue', label: 'Valor da Despesa', formatter: (value) => `R$ ${parseFloat(value.replace('.', ',')).toFixed(2)}`},
                     { key: 'status', label: 'Status', formatter: (value) => value.toUpperCase(), sortable: true},
-                ]
+                ],
+
+                user: [],
             }
         },
 
@@ -120,6 +126,8 @@ import http from '@/config';
 
         mounted(){
             this.loadRegisters()
+            const user = JSON.parse(localStorage.getItem('user'))
+            this.user =  user
         },
 
         computed: {

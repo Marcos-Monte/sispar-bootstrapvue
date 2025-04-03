@@ -33,7 +33,7 @@
         ></b-form-input>
         
         <!-- Link para recuperação de senha -->
-        <router-link class="link" to="/novasenha">Esqueci minha senha</router-link>
+        <router-link class="link" to="/admin/novasenha">Esqueci minha senha</router-link>
         
         <!-- Alerta de erro de login -->
         <b-alert 

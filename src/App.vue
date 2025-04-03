@@ -1,6 +1,6 @@
 <template>
   <!-- Container principal que ocupa toda a largura da tela -->
-  <b-container no-gutters fluid id="app">
+  <b-container no-gutters fluid id="app" >
     
     <!-- Componente que renderiza as rotas -->
     <router-view></router-view>

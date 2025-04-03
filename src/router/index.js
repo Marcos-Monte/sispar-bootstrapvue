@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // Importando Layouts
+import Others from '@/components/layouts/LayoutOthers.vue'
 import Home from '../components/layouts/LayoutHome.vue'
 // Importando as views
 import Cadastro from '../views/Cadastro.vue'
@@ -17,13 +18,10 @@ Vue.use(VueRouter)
 
 // Cria uma constante com as rotas da aplicação
 const routes = [
+  {path: '*', redirect: '/'},
   // Cada objeto dentro do array representa uma rota
   // O objeto possui as propriedades path, name e component
   { path: '/', name: 'login',component: Login},
-
-  { path: '/novasenha', name: 'novasenha',component: NovaSenha},
-
-  { path: '/cadastro', name: 'cadastro', component: Cadastro},
 
   // Cria uma rota com um componente que será exibido na página
   {path: '/', component: Home, 
@@ -38,6 +36,13 @@ const routes = [
     ]
 
   }, 
+
+  {path: '/admin', component: Others,
+    children: [
+      {path: 'cadastro', name: 'cadastro', component: Cadastro},
+      {path: 'novasenha', name: 'novasenha',component: NovaSenha},
+    ]
+  }
 
 ]
 
