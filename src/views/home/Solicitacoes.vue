@@ -19,21 +19,12 @@
 
                         <div class="col">
                             <label for="name" class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control" aria-label="name" required v-model="form.name"  style="text-transform: uppercase;">
+                            <input type="text" class="form-control" aria-label="name" required v-model="form.name"  style="text-transform: uppercase;" disabled>
                         </div>
 
                         <div class="col col-12 col-md-4">
                             <label for="position" class="form-label">Cargo</label>
-                            <select class="form-select" aria-label="position" required v-model="form.position">
-                                <option selected value="">Selecione</option>
-                                <option value="frontend">Dev Front-End</option>
-                                <option value="backend">Dev Back-End</option>
-                                <option value="po">P.O.</option>
-                                <option value="cto">CTO</option>
-                                <option value="devops">DEVOPS</option>
-                                <option value="qa">QA</option>
-                                <option value="outro">Outro</option>
-                            </select>
+                            <input type="text" class="form-control" aria-label="position" required v-model="form.position"  style="text-transform: uppercase;" disabled>
                         </div>
 
                         <div class="col-12">
@@ -192,7 +183,7 @@ import http from '@/config';
 import { v4 as uuidv4 } from 'uuid';
 
     export default {
-
+        
         components: {NavBar},
 
         data(){
@@ -207,7 +198,6 @@ import { v4 as uuidv4 } from 'uuid';
                     expenseType: '',
                     position: '',
                     expenseValue: '',
-
                 },
 
                 registers: [],
@@ -354,6 +344,10 @@ import { v4 as uuidv4 } from 'uuid';
 
         mounted(){
             this.loadRegisters(); // Carrega registros salvos ao iniciar a aplicação
+            const user = JSON.parse(localStorage.getItem('user'))
+
+            this.form.name = user.name;
+            this.form.position = user.position
         },
 
         computed: {

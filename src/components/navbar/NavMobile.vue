@@ -24,12 +24,12 @@
                 
                 <!-- Item de navegação com nome do usuário -->
                 <b-nav-item>
-                    <img src="../../assets/navbar/cartoon.webp" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
-                    <p class="name">Marcos Monte</p>
+                    <img :src="userPhoto" alt="Ícone que será substituído pela foto do usuário" class="rounded-circle" style="width: 40px; height: 40px; border: none">
+                    <p class="name">{{userName}}</p>
                 </b-nav-item>
                 <!-- Item de navegação com cargo do usuário -->
                 <b-nav-item >
-                    <p class="job">Desenvolvedor Web</p>
+                    <p class="job">{{userPosition}}</p>
                 </b-nav-item>
                 <!-- Item de navegação para a página de início -->
                 <b-nav-item >
@@ -76,7 +76,7 @@
 <script>
 
     export default {
-
+        props: ['userName', 'userPosition', 'userPhoto']
     }
 
 </script>
@@ -105,6 +105,7 @@
 
         .name, .job {
             font-weight: 700;
+            text-transform: capitalize;
         }
 
         .job {

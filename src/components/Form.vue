@@ -89,49 +89,30 @@ import users from '@/data/users';
                         return;
                     }
 
-                    for(let user of this.myUsers){
+                    const user = this.myUsers.find(u => u.username === this.user.email)
 
-                        if(this.user.email === user.username && this.user.senha === user.password){
-
-                            this.$router.push('/home'); // Redireciona para a página inicial
-                            barramento.$emit('logged', )
-
-                        } else if(this.user.email === user.username && this.user.senha !== user.password) {
-
-                            this.erro = 'Senha Incorreta'; // Define mensagem de erro
-                            this.showError = true; // Exibe mensagem de erro
-
-                            setTimeout(() => {
-                                this.showError = false; // Oculta mensagem de erro após 3 segundos
-                            }, 3000)
-                        } else {
-                            this.erro = 'Email não cadastrado'; // Define mensagem de erro
-                            this.showError = true; // Exibe mensagem de erro
-                            setTimeout(() => {
-                                this.showError = false; // Oculta mensagem de erro após 3 segundos
-                            }, 3000)
+                    if(!user){
+                        this.erro = 'Email não cadastrado'
+                    } else if (user.password !== this.user.senha){
+                        this.erro = 'Senha Incorreta'
+                    } else {
+                        const userInfos = {
+                            username: user.username,
+                            password: user.password,
+                            name: user.name,
+                            position: user.position,
+                            photo: user.photo
                         }
+                        barramento.$emit('logged', userInfos)
+                        localStorage.setItem('user', JSON.stringify(userInfos))
 
+                        this.$router.push('/home')
+                        return
                     }
-                    // // Verifica se o email e senha correspondem aos dados de login
-                    // if (this.login.email === this.user.email) {
 
-                    //     if (this.login.senha === this.user.senha){
-                    //         this.$router.push('/home'); // Redireciona para a página inicial
-                    //     } else {
-                    //         this.erro = 'Senha incorreta'; // Define mensagem de erro
-                    //         this.showError = true; // Exibe mensagem de erro
-                    //         setTimeout(() => {
-                    //             this.showError = false; // Oculta mensagem de erro após 3 segundos
-                    //         }, 3000)
-                    //     }
-                    // } else {
-                    //     this.erro = 'Email não cadastrado'; // Define mensagem de erro
-                    //     this.showError = true; // Exibe mensagem de erro
-                    //     setTimeout(() => {
-                    //         this.showError = false; // Oculta mensagem de erro após 3 segundos
-                    //     }, 3000)
-                    // }
+                    this.showError = true;
+                    setTimeout(() => (this.showError = false), 3000)
+
                 } catch (error) {
                     console.error('Erro: ',error); // Exibe erro no console
                 }

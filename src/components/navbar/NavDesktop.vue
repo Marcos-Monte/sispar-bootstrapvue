@@ -13,11 +13,11 @@
             <!-- Informações do Usuario -->
             <div class="userBox">
 
-                <img src="../../assets/navbar/cartoon.webp" alt="Foto do Usuário">
+                <img :src="userPhoto" alt="Foto do Usuário">
 
                 <div>
-                    <p class="name">Marcos Monte</p>
-                    <p class="job">Desenvolvedor Web</p>
+                    <p class="name">{{ userName }}</p>
+                    <p class="job">{{ userPosition }}</p>
                 </div>
 
             </div>
@@ -68,6 +68,7 @@
 import barramento from '@/data/eventBus';
 
     export default {
+        props: ['userName', 'userPosition', 'userPhoto'],
 
         data(){
             return {
@@ -139,6 +140,7 @@ import barramento from '@/data/eventBus';
 
         .name, .job {
             font-weight: 700;
+            text-transform: capitalize;
         }
 
         .job {
