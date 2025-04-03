@@ -72,7 +72,6 @@
 
 <script>
 // Importação das imagens dos cartões
-import cardAnalises from '../../assets/home/cardAnalises.png';
 import cardHistorico from '../../assets/home/cardHistorico.png';
 import cardSolicitacao from '../../assets/home/cardSolicitacoes.png';
 // Import de Imagens dos Indices
@@ -96,7 +95,7 @@ export default {
             // Array de objetos que representam os cartões
             cards: [
                 { img: cardSolicitacao, title: 'Solicitação de Reembolso', alt: 'Icone do card de Solicitações', route: '/solicitacoes' },
-                { img: cardAnalises, title: 'Verificar Análises', alt: 'Icone do card de Análises', route: '/analises' },
+                // { img: cardAnalises, title: 'Verificar Análises', alt: 'Icone do card de Análises', route: '/analises' },
                 { img: cardHistorico, title: 'Histórico', alt: 'Icone do card de Historico', route: '/historico' },
             ],
 
@@ -184,9 +183,9 @@ export default {
 
 /* Estilos para os cartões */
 
-.cardsBox:nth-child(even){
-    margin: 0 1rem;
-}
+// .cardsBox:nth-child(even){
+//     margin: 0 1rem;
+// }
 
 .card {
     width: 20rem; 
@@ -195,6 +194,7 @@ export default {
     justify-content: center;
     align-items: center !important;
     gap: 1rem;
+    margin: 0 1rem;
     border: 0.8px solid var(--secondary-dark) ;
 
     .card-title {

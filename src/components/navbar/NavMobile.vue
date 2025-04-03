@@ -46,12 +46,12 @@
                     </b-button>
                 </b-nav-item>
                 <!-- Item de navegação para a página de análises -->
-                <b-nav-item>
+                <!-- <b-nav-item>
                     <p>Análises</p>
                     <b-button class="btn-icon-primary"  tag="router-link" to="/analises">
                         <img src="../../assets/navbar/iconAnalises.png" alt="">
                     </b-button>
-                </b-nav-item>
+                </b-nav-item> -->
                 <!-- Item de navegação para a página de histórico -->
                 <b-nav-item>
                     <p>Historico</p>

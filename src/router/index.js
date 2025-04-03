@@ -5,7 +5,6 @@ import VueRouter from 'vue-router'
 import Home from '../components/layouts/LayoutHome.vue'
 // Importando as views
 import Cadastro from '../views/Cadastro.vue'
-import Analises from '../views/home/Analises.vue'
 import Dashboard from '../views/home/Dashboard.vue'
 import Historico from '../views/home/Historico.vue'
 import Solicitacoes from '../views/home/Solicitacoes.vue'
@@ -32,7 +31,7 @@ const routes = [
     children: [
       
       { path: 'home', name: 'home', component: Dashboard},
-      { path: 'analises', name: 'analises', component: Analises},
+      // { path: 'analises', name: 'analises', component: Analises},
       { path: 'historico', name: 'historico', component: Historico},
       { path: 'solicitacoes', name: 'solicitacoes',component: Solicitacoes}
       
