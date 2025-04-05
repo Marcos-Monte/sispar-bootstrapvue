@@ -123,6 +123,7 @@ export default {
                 const response = await http.get('/')
                 this.registers = response.data
                 this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
+                this.loading = true
             } catch(error){
                 console.error('Erro ao carregar Registros!', error)
             }
