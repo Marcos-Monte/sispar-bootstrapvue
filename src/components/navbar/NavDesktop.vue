@@ -84,6 +84,7 @@ import barramento from '@/data/eventBus';
 
             logoff(){
                 localStorage.removeItem('user')
+                localStorage.removeItem('registersStorage')
                 this.$router.push('/')
             }
         },

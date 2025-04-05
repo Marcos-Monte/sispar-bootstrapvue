@@ -184,7 +184,7 @@ import { v4 as uuidv4 } from 'uuid';
 
     export default {
         
-        components: {NavBar},
+        components: { NavBar },
 
         data(){
             return {
@@ -213,32 +213,37 @@ import { v4 as uuidv4 } from 'uuid';
                     
                 ],
 
-                currentPage: 1,
-
-                solicitation: {
-                    id: uuidv4(),
-                    expenseTotal: 0,
-                }
+                currentPage: 1, // Página atual da tabela
             }
         },
 
         methods: {
             clearForm(){
+                this.user = JSON.parse(localStorage.getItem('user'))
+
                 this.form = {
-                    name: '',
+                    name: this.user.name,
                     enterprise: '',
                     description: '',
                     date: '',
-                    expenseType: 'Selecione',
-                    position: 'Selecione',
+                    expenseType: '',
+                    position: this.user.position,
                     expenseValue: ''
                 }
             },
 
-            async postRegister(){
+            postRegister(){
+
+                if(!this.form.name || !this.form.enterprise ||  !this.form.date || !this.form.expenseType || !this.form.position || !this.form.expenseValue){
+                    // Verifica se todos os campos obrigatórios estão preenchidos
+                    alert('Preencha todos os campos obrigatórios!')
+                    return
+                }
 
                 try{
-                    await http.post('/', {
+                    const registersStorage = JSON.parse(localStorage.getItem('registersStorage')) || []
+
+                    const formData = {
                         id: uuidv4(),
                         name: this.form.name,
                         enterprise: this.form.enterprise,
@@ -247,19 +252,26 @@ import { v4 as uuidv4 } from 'uuid';
                         expenseType: this.form.expenseType,
                         position: this.form.position,
                         expenseValue: this.form.expenseValue,
-                        status: '',
-                    })
-
+                        status: 'analisando',
+                    }
+                    
+                    // Adiciona o registro no localStorage
+                    localStorage.setItem('registersStorage', 
+                        JSON.stringify(
+                            [...registersStorage, formData]
+                        )
+                    )
+                    
                     this.loadRegisters()
 
-                    this.form = {};
+                    this.clearForm()
 
                 } catch(error){
                     console.error('Erro ao registrar, tente novamente!', error)
                 }
             },
 
-            async deleteRegister(item){
+            deleteRegister(item){
                 // Possíveis Parametros: Item, Index e Event
                 
                 try {
@@ -269,7 +281,13 @@ import { v4 as uuidv4 } from 'uuid';
                         throw new Error("ID do item não encontrado.");
                     }
 
-                    await http.delete(`/?column=id&value=${id}`)
+                    const registersStorage = JSON.parse(localStorage.getItem('registersStorage')) || []
+                    console.log(registersStorage)
+
+                    const updatedRegisters = registersStorage.filter(r => r.id !== id)
+                    console.log(updatedRegisters)
+
+                    localStorage.setItem('registersStorage', JSON.stringify(updatedRegisters))
 
                     this.loadRegisters()
 
@@ -279,18 +297,14 @@ import { v4 as uuidv4 } from 'uuid';
 
             },
 
-            async loadRegisters(){
+            loadRegisters(){
                 this.loading = true
 
                 try {
 
-                    const response = await http.get('/')
-
-                    const responseFilteres = response.data.filter(
-                        (obj) => obj.status === ''
-                    )
+                    const response = JSON.parse(localStorage.getItem('registersStorage')) || []
                     
-                    this.registers = responseFilteres
+                    this.registers = response
 
                     this.loading = false
 
@@ -300,39 +314,34 @@ import { v4 as uuidv4 } from 'uuid';
             }, 
 
             async sendRequest(){
+                this.loading = true;
                 try {
 
                     if(!this.registers){
                         return
                     }
+                    
+                    await http.post('/', this.registers) // Envio dos dados do localStorage para o servidor
 
-                    for(let obj of this.registers) {
-                        //registro.status = 'analisando';
-
-                        if(!obj.status) {
-                            await http.put(`id/${obj.id}`, {
-                                status: 'analisando'
-                            })
-                        }
-                    }
-
+                    localStorage.setItem('registersStorage', JSON.stringify([])) // Limpa o localStorage após o envio
                     this.loadRegisters()
 
+                    this.loading = false
                 } catch(error){
                     console.error('Não foi possível enviar requisições: ', error)
                 }
             },
 
-            async cancelRequest(){
+            cancelRequest(){
                 this.loading = true;
                 try {
                     if(!this.registers){
                         return
                     }
 
-                    for(let register of this.registers){
-                        await this.deleteRegister(register)
-                    }
+                    localStorage.setItem('registersStorage', JSON.stringify([])) // Limpa o localStorage
+
+                    this.loadRegisters() // Atualiza a lista de registros
 
                     this.loading = false
                 } catch(error){
@@ -343,19 +352,20 @@ import { v4 as uuidv4 } from 'uuid';
         },
 
         mounted(){
+            
             this.loadRegisters(); // Carrega registros salvos ao iniciar a aplicação
-            const user = JSON.parse(localStorage.getItem('user'))
+            this.clearForm() // Limpa o formulário ao iniciar a aplicação
+            localStorage.getItem('registersStorage') // Puxar os dados do localStorage
 
-            this.form.name = user.name;
-            this.form.position = user.position
         },
 
         computed: {
 
             rows(){
-                return this.registers.length
+                return this.registers.length // Total de registros na tabela
             },
-
+            
+            // Total de despesas
             expenseSum(){
                 const total = this.registers.reduce( 
                     (expenseTotal ,register) => parseFloat(expenseTotal) + parseFloat(register.expenseValue), 0

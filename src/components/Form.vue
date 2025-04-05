@@ -105,6 +105,7 @@ import users from '@/data/users';
                         }
                         barramento.$emit('logged', userInfos)
                         localStorage.setItem('user', JSON.stringify(userInfos))
+                        localStorage.setItem('registersStorage', JSON.stringify([]))
 
                         this.$router.push('/home')
                         return

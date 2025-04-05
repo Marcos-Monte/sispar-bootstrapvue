@@ -81,6 +81,7 @@
         methods: {
             logoff(){
                 localStorage.removeItem('user')
+                localStorage.removeItem('registersStorage')
                 this.$router.push('/')
             }
         }
