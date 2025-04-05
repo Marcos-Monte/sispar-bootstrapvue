@@ -122,7 +122,6 @@ import users from '@/data/users';
 
         mounted(){
             this.myUsers = users
-            console.log(this.myUsers)
         }
 
     }
