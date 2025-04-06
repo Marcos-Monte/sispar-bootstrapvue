@@ -103,7 +103,7 @@
                     <div class="tableBox">
                         <b-overlay :show="loading">
                             <div class="overlay__inner mt-5">
-                                <div class="overlay__content overlayClass">
+                                <div class="overlay__content ">
                                     <span class="spinner"></span>
                                 </div>
                             </div>

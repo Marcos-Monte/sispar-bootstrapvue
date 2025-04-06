@@ -6,7 +6,7 @@
 
             <b-overlay :show="loading">
                 <div class="overlay__inner">
-                    <div class="overlay__content overlayClass">
+                    <div class="overlay__content ">
                         <span class="spinner"></span>
                     </div>
                 </div>

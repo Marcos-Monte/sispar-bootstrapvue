@@ -14,7 +14,6 @@
 
             <div class="row w-100 vh-100 d-flex flex-column justify-content-start align-items-center">
                 
-                
                 <template v-if="(registers.length > 0)">
                     
                     <div class="tableBox">

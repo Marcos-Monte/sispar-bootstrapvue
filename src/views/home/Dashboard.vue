@@ -21,8 +21,9 @@
                 </b-row>
 
                 <b-row no-gutters fluid class="d-flex justify-content-between align-items-center gap-4 mb-5">
+                    
                     <!-- Colunas que contêm os cartões de reembolso -->
-                    <b-col 
+                    <b-col
                         no-gutters
                         class="d-flex justify-content-center align-items-center p-0 cardsBox"
                         v-for="(card, index) in cards" :key="index"
@@ -47,7 +48,15 @@
                     </b-col>
                 </b-row>
 
-                <b-row no-gutters fluid>
+                <b-overlay :show="loading">
+                    <div class="overlay__inner">
+                        <div class="overlay__content ">
+                            <span class="spinner"></span>
+                        </div>
+                    </div>
+                </b-overlay>
+
+                <b-row no-gutters fluid v-if="!loading">
 
                     <b-col 
                         no-gutters
@@ -58,7 +67,6 @@
                             <span>{{ info.value }}</span>
                             <p>{{ info.text }}</p>
                         </div>
-                        <!-- {{ analizing }} -->
                     </b-col>
 
                 </b-row>
@@ -108,7 +116,9 @@ export default {
                 approved: '',
                 rejected: '',
                 requested: '',
-            }
+            },
+
+            loading: false,
         }
     },
 
@@ -123,7 +133,7 @@ export default {
                 const response = await http.get('/')
                 this.registers = response.data
                 this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
-                this.loading = true
+                this.loading = false
             } catch(error){
                 console.error('Erro ao carregar Registros!', error)
             }
