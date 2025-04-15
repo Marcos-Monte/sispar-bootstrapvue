@@ -122,7 +122,8 @@ import {mapActions} from 'vuex'
         transition: width 0.2s ease-in-out;
 
         img {
-            width: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
         }
 

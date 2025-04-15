@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         listaUsuarios: [],
-        usuarioLogado: {},
+        usuarioLogado: null,
     },
 
     getters: {
@@ -16,7 +16,8 @@ export default new Vuex.Store({
 
         usuario(state){
             return state.usuarioLogado
-        }
+        },
+
     },
 
     mutations: {
@@ -30,7 +31,7 @@ export default new Vuex.Store({
 
         removerLogin(state){
             state.usuarioLogado = {}
-        }
+        },
     },
 
     actions: {
@@ -56,6 +57,6 @@ export default new Vuex.Store({
             } catch (error) {
                 console.error('Erro ao deslogar o usuário: ', error)
             }
-        }
+        },
     }
 })

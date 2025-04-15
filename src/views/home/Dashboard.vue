@@ -130,9 +130,10 @@ export default {
         async loadRegisters(){
             this.loading = true
             try {
-                const response = await http.get('/')
-                this.registers = response.data
-                this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
+                // const response = await http.get('/')
+                // this.registers = response.data
+                // this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
+                console.log('Carregou')
                 this.loading = false
             } catch(error){
                 console.error('Erro ao carregar Registros!', error)

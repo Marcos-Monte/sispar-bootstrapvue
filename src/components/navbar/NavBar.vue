@@ -43,7 +43,8 @@ import { mapGetters } from 'vuex';
 
         computed: mapGetters({
             // Antes o usuario era armazenado no 'localStorage', agora foi implementado o uso de Vuex para gerenciamento de estado
-            user: 'usuario'
+            user: 'usuario',
+            photo: 'profilePicture'
         })
 
     }
