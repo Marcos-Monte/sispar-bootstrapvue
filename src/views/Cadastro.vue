@@ -60,6 +60,30 @@
                 v-model="user.senhaConfirm"
             ></b-form-input>
 
+            <caption>Informações Pessoais</caption>
+
+            <!-- Campo de entrada para nome -->
+            <b-form-input
+                class="input"
+                type="text"
+                placeholder="Nome"
+                required
+                autocomplete="name"
+                id="name"
+                v-model="user.name"
+            ></b-form-input>
+
+            <!-- Campo de entrada para cargo -->
+            <b-form-input
+                class="input"
+                type="text"
+                placeholder="Cargo"
+                required
+                autocomplete="position "
+                id="position"
+                v-model="user.position"
+            ></b-form-input>
+
             <!-- Linha com botões de login e criação de conta -->
             <b-row no-gutters class="w-100 d-flex justify-content-center gap-1">
                 
@@ -86,6 +110,7 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 
     export default {
         data(){
@@ -95,6 +120,8 @@
                     emailConfirm: '',
                     senha: '',
                     senhaConfirm: '',
+                    name: '',
+                    position: '',
                 },
                 loading: false,
                 message: false, // Controle de exibição do erro
@@ -102,14 +129,16 @@
                 erro: '',
             }
         },
+        
 
         methods: {
+            ...mapActions(['criarNovoUsuario']), // Mapeando actions do Vuex
+
             clearForm(){
                 this.user = {}
             },
             submitNewUser(){
                 this.loading = true
-
 
                 try {
 
@@ -136,11 +165,16 @@
                         setTimeout(() => (this.message = false), 3000)
                         return 
                     }
-                    
-                    localStorage.setItem('temporaryUser', JSON.stringify({
+
+                    const user = {
                         username: this.user.email,
-                        password: this.user.senha
-                    }))
+                        password: this.user.senha,
+                        name: this.user.name,
+                        position: this.user.position,
+                    }
+
+                    console.log(user)
+                    this.criarNovoUsuario(user)
 
                     this.erro = 'Usuário cadatrado com sucesso!'
                     this.message = true;

@@ -65,7 +65,8 @@
 
 <script>
 import barramento from '@/data/eventBus';
-import users from '@/data/users';
+// import users from '@/data/users';
+import {mapGetters, mapActions} from 'vuex';
 
     export default {
 
@@ -78,6 +79,8 @@ import users from '@/data/users';
             }
         },
         methods: {
+            ...mapActions(['criarNovoLogin']),
+
             handleLogin() {
                 try {
                     if(!this.user.email || !this.user.senha) {
@@ -89,7 +92,7 @@ import users from '@/data/users';
                         return;
                     }
 
-                    const user = this.myUsers.find(u => u.username === this.user.email)
+                    const user = this.users.find(u => u.username === this.user.email)
 
                     if(!user){
                         this.erro = 'Email não cadastrado'
@@ -103,9 +106,8 @@ import users from '@/data/users';
                             position: user.position,
                             photo: user.photo
                         }
-                        barramento.$emit('logged', userInfos)
-                        localStorage.setItem('user', JSON.stringify(userInfos))
-                        localStorage.setItem('registersStorage', JSON.stringify([]))
+
+                        this.criarNovoLogin(userInfos)
 
                         this.$router.push('/home')
                         return
@@ -120,9 +122,9 @@ import users from '@/data/users';
             }
         },
 
-        mounted(){
-            this.myUsers = users
-        }
+        computed: mapGetters({
+            users: 'usuarios'
+        })
 
     }
 

@@ -68,20 +68,24 @@
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
-
     </b-navbar>
 
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 
     export default {
         props: ['userName', 'userPosition', 'userPhoto'],
 
+        computed: mapGetters({
+            usuario: 'usuario',
+        }),
         methods: {
+            ...mapActions(['deslogarUsuario']),
+
             logoff(){
-                localStorage.removeItem('user')
-                localStorage.removeItem('registersStorage')
+                this.deslogarUsuario()
                 this.$router.push('/')
             }
         }

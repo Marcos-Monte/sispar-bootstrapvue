@@ -66,6 +66,7 @@
 
 <script>
 import barramento from '@/data/eventBus';
+import {mapActions} from 'vuex'
 
     export default {
         props: ['userName', 'userPosition', 'userPhoto'],
@@ -77,26 +78,16 @@ import barramento from '@/data/eventBus';
         },
 
         methods: {
+            ...mapActions(['deslogarUsuario']),
             // Método para alternar o estado da barra de navegação
             handleOpen(){
                 return this.open = !this.open;
             },
 
             logoff(){
-                localStorage.removeItem('user')
-                localStorage.removeItem('registersStorage')
+                this.deslogarUsuario()
                 this.$router.push('/')
             }
-        },
-
-        mounted(){
-            barramento.$on('fechouMenu', (evento) => {
-                this.open = evento
-            })
-        },
-
-        beforeDestroy() {
-            barramento.$off("fechouMenu", this.fecharMenu);
         },
     }
 
