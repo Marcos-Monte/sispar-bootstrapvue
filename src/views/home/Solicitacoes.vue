@@ -182,6 +182,8 @@ import NavBar from '@/components/navbar/NavBar.vue';
 import http from '@/config';
 import { v4 as uuidv4 } from 'uuid';
 
+import {mapGetters} from 'vuex';
+
     export default {
         
         components: { NavBar },
@@ -219,8 +221,6 @@ import { v4 as uuidv4 } from 'uuid';
 
         methods: {
             clearForm(){
-                this.user = JSON.parse(localStorage.getItem('user'))
-
                 this.form = {
                     name: this.user.name,
                     enterprise: '',
@@ -360,6 +360,10 @@ import { v4 as uuidv4 } from 'uuid';
         },
 
         computed: {
+
+            ...mapGetters({
+                user: 'usuario'
+            }),
 
             rows(){
                 return this.registers.length // Total de registros na tabela
