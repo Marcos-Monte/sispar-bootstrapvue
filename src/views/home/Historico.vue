@@ -26,27 +26,21 @@
                         </b-overlay>
 
                         
+                        <div style="overflow-x: auto; width: 100%;">
+                            <b-table
+                                caption-top
+                                responsive
+                                :items="registers"
+                                :fields="fields"
+                                :per-page="10"
+                                :current-page="currentPage"
+                                sort-icon-left
+                                no-sort-reset
+                                aria-controls="my-table"
+                            >
 
-                        <b-table
-                            caption-top
-                            reponsive
-                            :items="registers"
-                            :fields="fields"
-                            :per-page="10"
-                            :current-page="currentPage"
-                            sort-icon-left
-                            no-sort-reset
-                            aria-controls="my-table"
-                        >
-
-                        <template #table-caption>
-                            <p style="text-transform: capitalize;">
-                                histórico de solicitações de {{ user.name }}
-                            </p>
-                        </template>
-
-                        </b-table>
-                    
+                            </b-table>
+                        </div>
                         <b-pagination
                             v-if="registers.length > 10"
                             first-number
@@ -80,6 +74,8 @@
 import NavBar from '@/components/navbar/NavBar.vue';
 import http from '@/config';
 
+import {mapGetters} from 'vuex';
+
     export default {
 
         components: {NavBar},
@@ -105,9 +101,13 @@ import http from '@/config';
                     { key: 'status', label: 'Status', formatter: (value) => value.toUpperCase(), sortable: true},
                 ],
 
-                user: [],
+                // user: [],
             }
         },
+
+        computed: mapGetters({
+            user: 'usuario'
+        }),
 
         methods: {
             async loadRegisters(){
@@ -125,8 +125,7 @@ import http from '@/config';
 
         mounted(){
             this.loadRegisters()
-            const user = JSON.parse(localStorage.getItem('user'))
-            this.user =  user
+
         },
 
         computed: {
@@ -185,5 +184,25 @@ import http from '@/config';
         }
     }
 }
+
+@media (max-width: 768px){
+    .pathBox {
+        visibility: hidden;
+    }
+    .contentBox{
+        padding: 1rem 1rem 1rem 1rem !important;
+        height: 100% !important;
+        text-align: center;
+    }
+
+    .cardsBox:nth-child(even){
+        margin: 0;
+    }
+
+    .indexBox {
+        margin: 0 1rem;
+    }
+}
+
 
 </style>
