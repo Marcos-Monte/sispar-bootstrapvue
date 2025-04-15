@@ -23,7 +23,7 @@
             </div>
             <!-- Item de navegação para a página inicial -->
             <b-nav-item>
-                <b-button class="btn-icon-primary" tag="router-link" to="/home" @click="() => open = false">
+                <b-button class="btn-icon-primary" tag="router-link" to="/home" @click="handleOpen(false)">
                     <img src="../../assets/navbar/iconHome.png" alt="Icone do Botão de Inicio">
                 </b-button>
                 <p>Início</p>
@@ -31,7 +31,7 @@
             
             <!-- Item de navegação para a página de solicitações -->
             <b-nav-item >
-                <b-button class="btn-icon-primary" tag="router-link" to="/solicitacoes" @click="() => open = false">
+                <b-button class="btn-icon-primary" tag="router-link" to="/solicitacoes" @click="handleOpen(false)">
                     <img src="../../assets/navbar/iconReembolso.png" alt="Icone do Botão de Solicitação de Reembolsos">
                 </b-button>
                 <p>Reembolsos</p>
@@ -39,7 +39,7 @@
             
             <!-- Item de navegação para a página de análises -->
             <!-- <b-nav-item>
-                <b-button class="btn-icon-primary" tag="router-link" to="/analises" @click="() => open = false">
+                <b-button class="btn-icon-primary" tag="router-link" to="/analises" @click="handleOpen(false)">
                     <img src="../../assets/navbar/iconAnalises.png" alt="Icone do Botão de Análises">
                 </b-button>
                 <p>Análises</p>
@@ -47,7 +47,7 @@
             
             <!-- Item de navegação para a página de histórico -->
             <b-nav-item>
-                <b-button class="btn-icon-primary" tag="router-link" to="/historico" @click="() => open = false">
+                <b-button class="btn-icon-primary" tag="router-link" to="/historico" @click="handleOpen(false)">
                     <img src="../../assets/navbar/iconHistorico.png" alt="Icone do Botão de Entrar nos Historicos">
                 </b-button>
                 <p>Histórico</p>
@@ -65,23 +65,27 @@
 </template>
 
 <script>
-import barramento from '@/data/eventBus';
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
     export default {
         props: ['userName', 'userPosition', 'userPhoto'],
 
-        data(){
-            return {
-                open: false, // Estado que controla se a barra de navegação está aberta ou fechada
-            }
-        },
+        computed: mapGetters({
+            open: 'statusMenu'
+        }),
 
         methods: {
-            ...mapActions(['deslogarUsuario']),
+            ...mapActions(['deslogarUsuario', 'openMenu']),
+
             // Método para alternar o estado da barra de navegação
-            handleOpen(){
-                return this.open = !this.open;
+            handleOpen(status){
+                
+                if(status === false){
+                    this.openMenu(status)
+                } else {
+                    const teste = !this.open
+                    this.openMenu(teste)
+                }
             },
 
             logoff(){

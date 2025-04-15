@@ -64,8 +64,7 @@
 </template>
 
 <script>
-import barramento from '@/data/eventBus';
-// import users from '@/data/users';
+
 import {mapGetters, mapActions} from 'vuex';
 
     export default {

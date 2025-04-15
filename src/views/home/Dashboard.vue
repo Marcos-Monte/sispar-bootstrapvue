@@ -40,7 +40,7 @@
                                 tag="article"
                                 style=""
                                 class="card mb-2 p-4"
-                                @click="closeMenu()"
+                                @click="closeMenu(false)"
                             >
                             </b-card>
                         </router-link>
@@ -90,8 +90,11 @@ import iconSolicitacao from '../../assets/home/iconSolicitacao.png';
 
 // Importação do componente NavBar
 import NavBar from '@/components/navbar/NavBar.vue';
-import barramento from '@/data/eventBus';
 
+// Import de Actions do VUEX
+import {mapActions} from 'vuex';
+
+// Import do componente de requisição (axios)
 import http from '@/config';
 
 export default {
@@ -123,16 +126,18 @@ export default {
     },
 
     methods: {
-        closeMenu(){
-            barramento.$emit('fechouMenu', false); // Envia valor sempre que o evento for emitido
+        ...mapActions(['openMenu']),
+
+        closeMenu(status){
+            this.openMenu(status)
         },
 
         async loadRegisters(){
             this.loading = true
             try {
-                // const response = await http.get('/')
-                // this.registers = response.data
-                // this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
+                const response = await http.get('/')
+                this.registers = response.data
+                this.filtered();  // Chamar após carregar os registros. Filtra os resultados com base nos status
                 console.log('Carregou')
                 this.loading = false
             } catch(error){
